@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GestorPresupuesto.Model
 {
-    public class MonthModel
+    public class MonthModel : IEquatable<MonthModel>
     {
         public int Month { get; set; }
 
@@ -23,6 +23,26 @@ namespace GestorPresupuesto.Model
         {
             this.Month = month;
             this.Year = year;
+        }
+
+        public override int GetHashCode()
+        {
+            return Year * 100 + Month;
+        }
+
+        public Boolean Equals(MonthModel other)
+        {
+            return other.Month.Equals(other.Year);
+        }
+
+        public override bool Equals(object obj)
+        {
+            MonthModel other = obj as MonthModel;
+
+            if (other != null)
+                return Equals(other);
+
+            return false;
         }
     }
 }

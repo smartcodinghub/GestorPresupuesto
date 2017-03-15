@@ -9,11 +9,17 @@ namespace GestorPresupuesto.Controller
 {
     public class MonthModelController
     {
-        public List<MonthModel> Meses { get; set; }
+        public HashSet<MonthModel> Meses { get; set; }
 
-        public MonthModelController()
+        public MonthModelController(IPersistenceController persistenceController)
         {
-            this.Meses = new List<MonthModel>();
+            this.Meses = persistenceController.Get().Months;
+            this.AddTodaysMonth();
+        }
+
+        private void AddTodaysMonth()
+        {
+            Meses.Add(new MonthModel(DateTime.Now.Month, DateTime.Now.Year));
         }
     }
 }

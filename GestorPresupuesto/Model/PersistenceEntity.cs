@@ -10,11 +10,11 @@ namespace GestorPresupuesto.Model
     {
         public Settings Settings { get; set; }
 
-        public List<MonthModel> Months { get; set; }
+        public HashSet<MonthModel> Months { get; set; }
 
         public PersistenceEntity()
         {
-            this.Months = new List<MonthModel>();
+            this.Months = new HashSet<MonthModel>();
             this.Settings = new Settings();
         }
     }

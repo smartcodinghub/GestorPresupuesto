@@ -10,5 +10,10 @@ namespace GestorPresupuesto.Controller
     public class SettingsController
     {
         public Settings Settings { get; set; }
+
+        public SettingsController(IPersistenceController persistenceController)
+        {
+            this.Settings = persistenceController.Get().Settings;
+        }
     }
 }
