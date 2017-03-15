@@ -20,15 +20,23 @@ namespace GestorPresupuesto
         public MainWindow()
         {
             InitializeComponent();
-            Setup();
         }
 
-        private void Setup()
+        private void MainWindow_Load(object sender, EventArgs e)
         {
             persistenceController = new PersistenceController();
 
             modelController = new MonthModelController(persistenceController);
             settingsController = new SettingsController(persistenceController);
+        }
+
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            persistenceController.Save(new Model.PersistenceEntity()
+            {
+                Settings = settingsController.Settings,
+                Months = modelController.Months
+            });
         }
     }
 }
