@@ -11,5 +11,7 @@ namespace GestorPresupuesto.Model
         public String Name { get; set; }
 
         public double Cost { get; set; }
+
+        public Boolean IsFixed { get; set; }
     }
 }

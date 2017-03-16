@@ -30,25 +30,35 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridMonths = new System.Windows.Forms.DataGridView();
+            this.MonthTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dataGridExpenses = new System.Windows.Forms.DataGridView();
+            this.dgcExpenseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcExpenseCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcExpenseIsFixed = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.label7 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridMonths)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridExpenses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -65,33 +75,94 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1196, 670);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1240, 657);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Controls.Add(this.dataGridMonths);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(538, 670);
+            this.panel1.Size = new System.Drawing.Size(558, 657);
             this.panel1.TabIndex = 0;
             // 
-            // dataGridView1
+            // dataGridMonths
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dataGridMonths.AllowUserToAddRows = false;
+            this.dataGridMonths.AllowUserToDeleteRows = false;
+            this.dataGridMonths.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLight;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.GridColor = System.Drawing.SystemColors.Control;
-            this.dataGridView1.Location = new System.Drawing.Point(15, 50);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(15, 5, 15, 15);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(508, 605);
-            this.dataGridView1.TabIndex = 1;
+            this.dataGridMonths.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridMonths.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dataGridMonths.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridMonths.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MonthTitle,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5,
+            this.Column6,
+            this.Column7});
+            this.dataGridMonths.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridMonths.GridColor = System.Drawing.SystemColors.Control;
+            this.dataGridMonths.Location = new System.Drawing.Point(15, 50);
+            this.dataGridMonths.Margin = new System.Windows.Forms.Padding(15, 5, 15, 15);
+            this.dataGridMonths.Name = "dataGridMonths";
+            this.dataGridMonths.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridMonths.Size = new System.Drawing.Size(528, 592);
+            this.dataGridMonths.TabIndex = 1;
+            this.dataGridMonths.SelectionChanged += new System.EventHandler(this.dataGridMonths_SelectionChanged);
+            // 
+            // MonthTitle
+            // 
+            this.MonthTitle.DataPropertyName = "MonthTitle";
+            this.MonthTitle.FillWeight = 28F;
+            this.MonthTitle.HeaderText = "Month";
+            this.MonthTitle.Name = "MonthTitle";
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "NonFixedExpensesCount";
+            this.Column2.FillWeight = 22F;
+            this.Column2.HeaderText = "Nº Caprichos";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "NonFixedExpensesTotalCost";
+            this.Column3.FillWeight = 22F;
+            this.Column3.HeaderText = "T. Caprichos";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "ExpensesCount";
+            this.Column4.FillWeight = 18F;
+            this.Column4.HeaderText = "Nº Gastos";
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "ExpensesTotalCost";
+            this.Column5.FillWeight = 18F;
+            this.Column5.HeaderText = "Total Gastos";
+            this.Column5.Name = "Column5";
+            // 
+            // Column6
+            // 
+            this.Column6.FillWeight = 22F;
+            this.Column6.HeaderText = "L. Caprichos";
+            this.Column6.Name = "Column6";
+            // 
+            // Column7
+            // 
+            this.Column7.FillWeight = 20F;
+            this.Column7.HeaderText = "L. Gastos";
+            this.Column7.Name = "Column7";
             // 
             // label1
             // 
@@ -107,7 +178,7 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.dataGridView2);
+            this.panel2.Controls.Add(this.dataGridExpenses);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.numericUpDown2);
@@ -116,17 +187,86 @@
             this.panel2.Controls.Add(this.numericUpDown1);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(538, 0);
+            this.panel2.Location = new System.Drawing.Point(558, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(658, 670);
+            this.panel2.Size = new System.Drawing.Size(682, 657);
             this.panel2.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(511, 622);
+            this.label7.Margin = new System.Windows.Forms.Padding(15);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(46, 20);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "Total:";
+            // 
+            // dataGridExpenses
+            // 
+            this.dataGridExpenses.AllowUserToAddRows = false;
+            this.dataGridExpenses.AllowUserToDeleteRows = false;
+            this.dataGridExpenses.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridExpenses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridExpenses.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dataGridExpenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridExpenses.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgcExpenseName,
+            this.dgcExpenseCost,
+            this.dgcExpenseIsFixed});
+            this.dataGridExpenses.GridColor = System.Drawing.SystemColors.Control;
+            this.dataGridExpenses.Location = new System.Drawing.Point(15, 145);
+            this.dataGridExpenses.Margin = new System.Windows.Forms.Padding(15, 5, 15, 15);
+            this.dataGridExpenses.Name = "dataGridExpenses";
+            this.dataGridExpenses.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridExpenses.Size = new System.Drawing.Size(652, 445);
+            this.dataGridExpenses.TabIndex = 7;
+            // 
+            // dgcExpenseName
+            // 
+            this.dgcExpenseName.DataPropertyName = "Name";
+            this.dgcExpenseName.FillWeight = 70F;
+            this.dgcExpenseName.HeaderText = "Concepto";
+            this.dgcExpenseName.Name = "dgcExpenseName";
+            // 
+            // dgcExpenseCost
+            // 
+            this.dgcExpenseCost.DataPropertyName = "Cost";
+            this.dgcExpenseCost.FillWeight = 15F;
+            this.dgcExpenseCost.HeaderText = "Coste";
+            this.dgcExpenseCost.Name = "dgcExpenseCost";
+            // 
+            // dgcExpenseIsFixed
+            // 
+            this.dgcExpenseIsFixed.DataPropertyName = "IsFixed";
+            this.dgcExpenseIsFixed.FillWeight = 15F;
+            this.dgcExpenseIsFixed.HeaderText = "Gasto Fijo?";
+            this.dgcExpenseIsFixed.Name = "dgcExpenseIsFixed";
+            this.dgcExpenseIsFixed.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgcExpenseIsFixed.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(10, 105);
+            this.label6.Margin = new System.Windows.Forms.Padding(15);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 20);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Gastos";
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(487, 55);
+            this.label5.Location = new System.Drawing.Point(511, 55);
             this.label5.Margin = new System.Windows.Forms.Padding(15, 15, 5, 15);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(88, 20);
@@ -135,8 +275,9 @@
             // 
             // numericUpDown2
             // 
+            this.numericUpDown2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.numericUpDown2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown2.Location = new System.Drawing.Point(595, 55);
+            this.numericUpDown2.Location = new System.Drawing.Point(619, 55);
             this.numericUpDown2.Margin = new System.Windows.Forms.Padding(15);
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(48, 25);
@@ -144,14 +285,15 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(317, 55);
+            this.label3.Location = new System.Drawing.Point(341, 55);
             this.label3.Margin = new System.Windows.Forms.Padding(15, 15, 5, 15);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 20);
+            this.label3.Size = new System.Drawing.Size(74, 20);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Gastos:";
+            this.label3.Text = "Caprichos";
             // 
             // label4
             // 
@@ -166,8 +308,9 @@
             // 
             // numericUpDown1
             // 
+            this.numericUpDown1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.numericUpDown1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown1.Location = new System.Drawing.Point(393, 55);
+            this.numericUpDown1.Location = new System.Drawing.Point(417, 55);
             this.numericUpDown1.Margin = new System.Windows.Forms.Padding(15);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(48, 25);
@@ -184,47 +327,11 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Detalle del Mes";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(10, 105);
-            this.label6.Margin = new System.Windows.Forms.Padding(15);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 20);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Gastos";
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ControlLight;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.GridColor = System.Drawing.SystemColors.Control;
-            this.dataGridView2.Location = new System.Drawing.Point(15, 145);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(15, 5, 15, 15);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(628, 458);
-            this.dataGridView2.TabIndex = 7;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(487, 635);
-            this.label7.Margin = new System.Windows.Forms.Padding(15);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(46, 20);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "Total:";
-            // 
             // MainWindow
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1220, 694);
+            this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "MainWindow";
@@ -234,12 +341,12 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridMonths)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridExpenses)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -248,7 +355,7 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridMonths;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label2;
@@ -258,8 +365,18 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridExpenses;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MonthTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcExpenseName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcExpenseCost;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgcExpenseIsFixed;
     }
 }
 

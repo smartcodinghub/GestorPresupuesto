@@ -1,4 +1,5 @@
 ﻿using GestorPresupuesto.Controller;
+using GestorPresupuesto.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +29,8 @@ namespace GestorPresupuesto
 
             modelController = new MonthModelController(persistenceController);
             settingsController = new SettingsController(persistenceController);
+
+            dataGridMonths.DataSource = modelController.AsViewModel();
         }
 
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
@@ -37,6 +40,29 @@ namespace GestorPresupuesto
                 Settings = settingsController.Settings,
                 Months = modelController.Months
             });
+        }
+
+        private void dataGridMonths_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridMonths.SelectedRows.Count > 0)
+            {
+                MonthViewModel[] monthModels = dataGridMonths.DataSource as MonthViewModel[];
+
+                if (monthModels != null)
+                {
+                    int index = dataGridMonths.SelectedRows[0].Index;
+
+                    if (index < monthModels.Length)
+                    {
+                        dataGridExpenses.DataSource = new ExpenseViewModel[]
+                        {
+                            new ExpenseViewModel(new Expense() { Name = "3x Raspberry Pi Zero", Cost = 20, IsFixed = false }),
+                            new ExpenseViewModel(new Expense() { Name = "Flexo", Cost = 45, IsFixed = false }),
+                            new ExpenseViewModel(new Expense() { Name = "Netflix", Cost = 12, IsFixed = true }),
+                        };
+                    }
+                }
+            }
         }
     }
 }

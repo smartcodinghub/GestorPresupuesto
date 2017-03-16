@@ -17,6 +17,11 @@ namespace GestorPresupuesto.Controller
             this.AddTodaysMonth();
         }
 
+        public MonthViewModel[] AsViewModel()
+        {
+            return this.Months.Select(m => new MonthViewModel(m)).ToArray();
+        }
+
         private void AddTodaysMonth()
         {
             Months.Add(new MonthModel(DateTime.Now.Month, DateTime.Now.Year));
