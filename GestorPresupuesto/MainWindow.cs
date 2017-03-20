@@ -102,6 +102,14 @@ namespace GestorPresupuesto
         private void RefreshView()
         {
             dataGridMonths.DataSource = modelController.MonthsAsMonthViewModel();
+            foreach (DataGridViewRow row in dataGridMonths.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells[6].Value))
+                {
+                    row.DefaultCellStyle.BackColor = Color.Red;
+                    row.DefaultCellStyle.ForeColor = Color.White;
+                }
+            }
         }
 
         private MonthViewModel GetSelectedMonth()

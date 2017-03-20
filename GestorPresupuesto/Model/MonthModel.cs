@@ -9,6 +9,7 @@ namespace GestorPresupuesto.Model
 {
     public class MonthModel : IEquatable<MonthModel>
     {
+        [JsonIgnore]
         public int Id => Year * 100 + Month;
 
         public int Month { get; set; }

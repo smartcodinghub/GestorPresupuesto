@@ -31,13 +31,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridMonths = new System.Windows.Forms.DataGridView();
-            this.MonthTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblMonthTotal = new System.Windows.Forms.Label();
@@ -59,6 +52,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.nMonthLimit = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
+            this.MonthTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcMonthIsOverLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridMonths)).BeginInit();
@@ -109,12 +109,12 @@
             this.dataGridMonths.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridMonths.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MonthTitle,
-            this.Column2,
             this.Column3,
-            this.Column4,
-            this.Column5,
             this.Column6,
-            this.Column7});
+            this.Column5,
+            this.Column7,
+            this.Column1,
+            this.dgvcMonthIsOverLimit});
             this.dataGridMonths.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridMonths.GridColor = System.Drawing.SystemColors.Control;
             this.dataGridMonths.Location = new System.Drawing.Point(15, 50);
@@ -125,53 +125,6 @@
             this.dataGridMonths.Size = new System.Drawing.Size(528, 592);
             this.dataGridMonths.TabIndex = 1;
             this.dataGridMonths.SelectionChanged += new System.EventHandler(this.dataGridMonths_SelectionChanged);
-            // 
-            // MonthTitle
-            // 
-            this.MonthTitle.DataPropertyName = "MonthTitle";
-            this.MonthTitle.FillWeight = 28F;
-            this.MonthTitle.HeaderText = "Month";
-            this.MonthTitle.Name = "MonthTitle";
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "NonFixedExpensesCount";
-            this.Column2.FillWeight = 22F;
-            this.Column2.HeaderText = "Nº Caprichos";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "NonFixedExpensesTotalCost";
-            this.Column3.FillWeight = 22F;
-            this.Column3.HeaderText = "T. Caprichos";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "ExpensesCount";
-            this.Column4.FillWeight = 18F;
-            this.Column4.HeaderText = "Nº Gastos";
-            this.Column4.Name = "Column4";
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "ExpensesTotalCost";
-            this.Column5.FillWeight = 18F;
-            this.Column5.HeaderText = "Total Gastos";
-            this.Column5.Name = "Column5";
-            // 
-            // Column6
-            // 
-            this.Column6.FillWeight = 22F;
-            this.Column6.HeaderText = "L. Caprichos";
-            this.Column6.Name = "Column6";
-            // 
-            // Column7
-            // 
-            this.Column7.FillWeight = 20F;
-            this.Column7.HeaderText = "L. Gastos";
-            this.Column7.Name = "Column7";
             // 
             // label1
             // 
@@ -438,6 +391,55 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Detalle del Mes";
             // 
+            // MonthTitle
+            // 
+            this.MonthTitle.DataPropertyName = "MonthTitle";
+            this.MonthTitle.FillWeight = 28F;
+            this.MonthTitle.HeaderText = "Month";
+            this.MonthTitle.Name = "MonthTitle";
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "NonFixedExpensesTotalCost";
+            this.Column3.FillWeight = 22F;
+            this.Column3.HeaderText = "T. Caprichos";
+            this.Column3.Name = "Column3";
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "ExpenseMax";
+            this.Column6.FillWeight = 22F;
+            this.Column6.HeaderText = "L. Caprichos";
+            this.Column6.Name = "Column6";
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "FixedExpensesTotalCost";
+            this.Column5.FillWeight = 18F;
+            this.Column5.HeaderText = "Total Fijos";
+            this.Column5.Name = "Column5";
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "ContinuosExpenseMax";
+            this.Column7.FillWeight = 20F;
+            this.Column7.HeaderText = "L. Fijos";
+            this.Column7.Name = "Column7";
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "ExpensesTotalCost";
+            this.Column1.FillWeight = 20F;
+            this.Column1.HeaderText = "Total";
+            this.Column1.Name = "Column1";
+            // 
+            // dgvcMonthIsOverLimit
+            // 
+            this.dgvcMonthIsOverLimit.DataPropertyName = "IsOverLimit";
+            this.dgvcMonthIsOverLimit.HeaderText = "IsOverLimit";
+            this.dgvcMonthIsOverLimit.Name = "dgvcMonthIsOverLimit";
+            this.dgvcMonthIsOverLimit.Visible = false;
+            // 
             // MainWindow
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -478,13 +480,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dataGridExpenses;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MonthTitle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgcExpenseName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgcExpenseCost;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgcExpenseIsFixed;
@@ -496,6 +491,13 @@
         private System.Windows.Forms.CheckBox cbFixed;
         private System.Windows.Forms.Button bSave;
         private System.Windows.Forms.Label lblMonthTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MonthTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcMonthIsOverLimit;
     }
 }
 
