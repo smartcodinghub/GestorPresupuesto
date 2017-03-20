@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\Abstract\IPersistenceController.cs" />
+    <Compile Include="Controller\Abstract\ISettingsController.cs" />
     <Compile Include="Controller\MonthModelController.cs" />
     <Compile Include="Controller\PersistenceController.cs" />
     <Compile Include="Controller\SettingsController.cs" />

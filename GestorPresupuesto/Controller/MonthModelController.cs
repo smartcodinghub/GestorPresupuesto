@@ -11,10 +11,10 @@ namespace GestorPresupuesto.Controller
     {
         public Dictionary<int, MonthModel> Months { get; set; }
 
-        public MonthModelController(IPersistenceController persistenceController)
+        public MonthModelController(IPersistenceController persistenceController, ISettingsController settingsController)
         {
             this.Months = persistenceController.Get().Months.ToDictionary(m => m.Id);
-            this.AddTodaysMonth();
+            this.AddTodaysMonth(settingsController.Settings);
         }
 
         public void SaveNewExpense(int id, Expense expense)
@@ -38,12 +38,16 @@ namespace GestorPresupuesto.Controller
             return new HashSet<MonthModel>(this.Months.Values);
         }
 
-        private void AddTodaysMonth()
+        private void AddTodaysMonth(Settings settings)
         {
             MonthModel model = new MonthModel(DateTime.Now);
 
             if (!Months.ContainsKey(model.Id))
+            {
+                model.ContinuosExpenseMax = settings.MonthContinuosExpenseMax;
+                model.ExpenseMax = settings.MonthExpenseMax;
                 this.Months[model.Id] = model;
+            }
         }
     }
 }

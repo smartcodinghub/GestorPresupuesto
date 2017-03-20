@@ -27,10 +27,10 @@ namespace GestorPresupuesto
         {
             persistenceController = new PersistenceController();
 
-            modelController = new MonthModelController(persistenceController);
             settingsController = new SettingsController(persistenceController);
+            modelController = new MonthModelController(persistenceController, settingsController);
 
-            dataGridMonths.DataSource = modelController.MonthsAsMonthViewModel();
+            RefreshView();
         }
 
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
@@ -44,10 +44,17 @@ namespace GestorPresupuesto
 
         private void dataGridMonths_SelectionChanged(object sender, EventArgs e)
         {
-            MonthModel selectedMonth = this.GetSelectedMonth()?.Model;
+            MonthViewModel selectedMonth = this.GetSelectedMonth();
 
             if (selectedMonth != null)
-                dataGridExpenses.DataSource = modelController.ExpensesByMonthIdAsExpenseViewModel(selectedMonth.Id);
+            {
+                dataGridExpenses.DataSource = modelController.ExpensesByMonthIdAsExpenseViewModel(selectedMonth.Model.Id);
+
+                lblMonthTotal.Text = selectedMonth.ExpensesTotalCost.ToString("#,00");
+
+                nMonthLimit.Value = selectedMonth.Model.ExpenseMax;
+                nMonthContinuosLimit.Value = selectedMonth.Model.ContinuosExpenseMax;
+            }
         }
 
         private void bSave_Click(object sender, EventArgs e)
@@ -63,8 +70,38 @@ namespace GestorPresupuesto
                     IsFixed = true
                 });
 
-                dataGridMonths.DataSource = modelController.MonthsAsMonthViewModel();
+                RefreshView();
             }
+        }
+
+        private void nMonthContinuosLimit_Update(object sender, EventArgs e)
+        {
+            KeyEventArgs evt = e as KeyEventArgs;
+            if (evt == null || evt.KeyCode == Keys.Enter)
+                SetLimit(nMonthContinuosLimit.Value, (m, v) => m.ContinuosExpenseMax = v);
+        }
+
+        private void nMonthLimit_Update(object sender, EventArgs e)
+        {
+            KeyEventArgs evt = e as KeyEventArgs;
+            if (evt == null || evt.KeyCode == Keys.Enter)
+                SetLimit(nMonthLimit.Value, (m, v) => m.ExpenseMax = v);
+        }
+
+        private void SetLimit(decimal value, Action<MonthModel, decimal> set)
+        {
+            MonthModel selectedMonth = this.GetSelectedMonth()?.Model;
+
+            if (selectedMonth != null)
+            {
+                set(selectedMonth, value);
+                RefreshView();
+            }
+        }
+
+        private void RefreshView()
+        {
+            dataGridMonths.DataSource = modelController.MonthsAsMonthViewModel();
         }
 
         private MonthViewModel GetSelectedMonth()

@@ -8,8 +8,8 @@ namespace GestorPresupuesto.Model
 {
     public class Settings
     {
-        public double MonthExpenseMax { get; set; }
+        public decimal MonthExpenseMax { get; set; }
 
-        public double MonthContinuosExpenseMax { get; set; }
+        public decimal MonthContinuosExpenseMax { get; set; }
     }
 }

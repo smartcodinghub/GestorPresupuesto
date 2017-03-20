@@ -11,7 +11,7 @@ namespace GestorPresupuesto.Model
         public readonly Expense Model;
 
         public String Name => Model.Name;
-        public double Cost => Model.Cost;
+        public decimal Cost => Model.Cost;
         public Boolean IsFixed => Model.IsFixed;
 
         public ExpenseViewModel(Expense model)

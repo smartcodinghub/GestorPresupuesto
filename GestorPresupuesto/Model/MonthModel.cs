@@ -12,12 +12,13 @@ namespace GestorPresupuesto.Model
         public int Id => Year * 100 + Month;
 
         public int Month { get; set; }
-
         public int Year { get; set; }
-
-        public List<Expense> Expenses { get => expenses; set { if (value != null) expenses = value; } }
+        public decimal ExpenseMax { get; set; }
+        public decimal ContinuosExpenseMax { get; set; }
 
         private List<Expense> expenses;
+        public List<Expense> Expenses { get => expenses; set { if (value != null) expenses = value; } }
+
 
         public MonthModel()
         {
