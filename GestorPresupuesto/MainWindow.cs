@@ -30,7 +30,7 @@ namespace GestorPresupuesto
             modelController = new MonthModelController(persistenceController);
             settingsController = new SettingsController(persistenceController);
 
-            dataGridMonths.DataSource = modelController.AsViewModel();
+            dataGridMonths.DataSource = modelController.MonthsAsMonthViewModel();
         }
 
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
@@ -38,11 +38,36 @@ namespace GestorPresupuesto
             persistenceController.Save(new Model.PersistenceEntity()
             {
                 Settings = settingsController.Settings,
-                Months = modelController.Months
+                Months = modelController.MonthsAsSet()
             });
         }
 
         private void dataGridMonths_SelectionChanged(object sender, EventArgs e)
+        {
+            MonthModel selectedMonth = this.GetSelectedMonth()?.Model;
+
+            if (selectedMonth != null)
+                dataGridExpenses.DataSource = modelController.ExpensesByMonthIdAsExpenseViewModel(selectedMonth.Id);
+        }
+
+        private void bSave_Click(object sender, EventArgs e)
+        {
+            MonthModel selectedMonth = this.GetSelectedMonth()?.Model;
+
+            if (selectedMonth != null)
+            {
+                modelController.SaveNewExpense(selectedMonth.Id, new Expense()
+                {
+                    Name = "Prueba añadido",
+                    Cost = 110,
+                    IsFixed = true
+                });
+
+                dataGridMonths.DataSource = modelController.MonthsAsMonthViewModel();
+            }
+        }
+
+        private MonthViewModel GetSelectedMonth()
         {
             if (dataGridMonths.SelectedRows.Count > 0)
             {
@@ -53,16 +78,11 @@ namespace GestorPresupuesto
                     int index = dataGridMonths.SelectedRows[0].Index;
 
                     if (index < monthModels.Length)
-                    {
-                        dataGridExpenses.DataSource = new ExpenseViewModel[]
-                        {
-                            new ExpenseViewModel(new Expense() { Name = "3x Raspberry Pi Zero", Cost = 20, IsFixed = false }),
-                            new ExpenseViewModel(new Expense() { Name = "Flexo", Cost = 45, IsFixed = false }),
-                            new ExpenseViewModel(new Expense() { Name = "Netflix", Cost = 12, IsFixed = true }),
-                        };
-                    }
+                        return monthModels[index];
                 }
             }
+
+            return null;
         }
     }
 }

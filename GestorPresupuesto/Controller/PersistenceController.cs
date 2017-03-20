@@ -38,7 +38,7 @@ namespace GestorPresupuesto.Controller
                 if (!String.IsNullOrEmpty(textRead))
                     return JsonConvert.DeserializeObject<PersistenceEntity>(textRead);
             }
-            catch (Exception ex) { }
+            catch (Exception) { }
 
             return new PersistenceEntity();
         }
@@ -50,7 +50,7 @@ namespace GestorPresupuesto.Controller
                 File.WriteAllText(path, JsonConvert.SerializeObject(toWrite));
                 return true;
             }
-            catch (Exception ex) { }
+            catch (Exception) { }
 
             return false;
         }

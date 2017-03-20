@@ -9,27 +9,32 @@ namespace GestorPresupuesto.Model
 {
     public class MonthModel : IEquatable<MonthModel>
     {
+        public int Id => Year * 100 + Month;
+
         public int Month { get; set; }
 
         public int Year { get; set; }
 
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public List<Expense> Expenses { get; set; }
+        public List<Expense> Expenses { get => expenses; set { if (value != null) expenses = value; } }
+
+        private List<Expense> expenses;
 
         public MonthModel()
         {
             this.Expenses = new List<Expense>();
         }
 
-        public MonthModel(int month, int year) : base()
+        public MonthModel(int month, int year) : this()
         {
             this.Month = month;
             this.Year = year;
         }
 
+        public MonthModel(DateTime date) : this(date.Month, date.Year) { }
+
         public override int GetHashCode()
         {
-            return Year * 100 + Month;
+            return Id;
         }
 
         public Boolean Equals(MonthModel other)
