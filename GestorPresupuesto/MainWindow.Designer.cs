@@ -54,15 +54,16 @@
             this.tbConcept = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.dataGridExpenses = new System.Windows.Forms.DataGridView();
-            this.dgcExpenseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgcExpenseCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgcExpenseIsFixed = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.nMonthContinuosLimit = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.nMonthLimit = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
+            this.dgcExpenseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcExpenseCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcExpenseIsFixed = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridMonths)).BeginInit();
@@ -384,7 +385,8 @@
             this.dataGridExpenses.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgcExpenseName,
             this.dgcExpenseCost,
-            this.dgcExpenseIsFixed});
+            this.dgcExpenseIsFixed,
+            this.Column2});
             this.dataGridExpenses.GridColor = System.Drawing.SystemColors.Control;
             this.dataGridExpenses.Location = new System.Drawing.Point(15, 129);
             this.dataGridExpenses.Margin = new System.Windows.Forms.Padding(15, 5, 15, 15);
@@ -393,29 +395,6 @@
             this.dataGridExpenses.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridExpenses.Size = new System.Drawing.Size(652, 461);
             this.dataGridExpenses.TabIndex = 7;
-            // 
-            // dgcExpenseName
-            // 
-            this.dgcExpenseName.DataPropertyName = "Name";
-            this.dgcExpenseName.FillWeight = 70F;
-            this.dgcExpenseName.HeaderText = "Concepto";
-            this.dgcExpenseName.Name = "dgcExpenseName";
-            // 
-            // dgcExpenseCost
-            // 
-            this.dgcExpenseCost.DataPropertyName = "Cost";
-            this.dgcExpenseCost.FillWeight = 15F;
-            this.dgcExpenseCost.HeaderText = "Coste";
-            this.dgcExpenseCost.Name = "dgcExpenseCost";
-            // 
-            // dgcExpenseIsFixed
-            // 
-            this.dgcExpenseIsFixed.DataPropertyName = "IsFixed";
-            this.dgcExpenseIsFixed.FillWeight = 15F;
-            this.dgcExpenseIsFixed.HeaderText = "Gasto Fijo?";
-            this.dgcExpenseIsFixed.Name = "dgcExpenseIsFixed";
-            this.dgcExpenseIsFixed.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgcExpenseIsFixed.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // label6
             // 
@@ -497,6 +476,41 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Detalle del Mes";
             // 
+            // dgcExpenseName
+            // 
+            this.dgcExpenseName.DataPropertyName = "Name";
+            this.dgcExpenseName.FillWeight = 70F;
+            this.dgcExpenseName.HeaderText = "Concepto";
+            this.dgcExpenseName.Name = "dgcExpenseName";
+            // 
+            // dgcExpenseCost
+            // 
+            this.dgcExpenseCost.DataPropertyName = "Cost";
+            this.dgcExpenseCost.FillWeight = 15F;
+            this.dgcExpenseCost.HeaderText = "Coste";
+            this.dgcExpenseCost.Name = "dgcExpenseCost";
+            // 
+            // dgcExpenseIsFixed
+            // 
+            this.dgcExpenseIsFixed.DataPropertyName = "IsFixed";
+            this.dgcExpenseIsFixed.FillWeight = 15F;
+            this.dgcExpenseIsFixed.HeaderText = "Gasto Fijo?";
+            this.dgcExpenseIsFixed.Name = "dgcExpenseIsFixed";
+            this.dgcExpenseIsFixed.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgcExpenseIsFixed.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Column2
+            // 
+            this.Column2.FillWeight = 10F;
+            this.Column2.HeaderText = "Editar";
+            this.Column2.MinimumWidth = 40;
+            this.Column2.Name = "Column2";
+            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column2.Text = "Editar";
+            this.Column2.ToolTipText = "Entra en modo edición del gasto seleccionado.";
+            this.Column2.UseColumnTextForButtonValue = true;
+            // 
             // MainWindow
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -537,9 +551,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dataGridExpenses;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgcExpenseName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgcExpenseCost;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dgcExpenseIsFixed;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown nCost;
@@ -559,6 +570,10 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lblMonthNonFixedTotal;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcExpenseName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcExpenseCost;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgcExpenseIsFixed;
+        private System.Windows.Forms.DataGridViewButtonColumn Column2;
     }
 }
 
