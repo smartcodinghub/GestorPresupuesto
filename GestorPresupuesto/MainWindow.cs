@@ -61,13 +61,13 @@ namespace GestorPresupuesto
         {
             MonthModel selectedMonth = this.GetSelectedMonth()?.Model;
 
-            if (selectedMonth != null)
+            if (selectedMonth != null && !String.IsNullOrEmpty(tbConcept.Text) && nCost.Value > 0)
             {
                 modelController.SaveNewExpense(selectedMonth.Id, new Expense()
                 {
-                    Name = "Prueba añadido",
-                    Cost = 110,
-                    IsFixed = true
+                    Name = tbConcept.Text,
+                    Cost = nCost.Value,
+                    IsFixed = cbFixed.Checked
                 });
 
                 RefreshView();
