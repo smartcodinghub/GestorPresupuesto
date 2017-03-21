@@ -51,6 +51,8 @@ namespace GestorPresupuesto
                 dataGridExpenses.DataSource = modelController.ExpensesByMonthIdAsExpenseViewModel(selectedMonth.Model.Id);
 
                 lblMonthTotal.Text = selectedMonth.ExpensesTotalCost.ToString("#,00");
+                lblMonthFixedTotal.Text = selectedMonth.FixedExpensesTotalCost.ToString("#,00");
+                lblMonthNonFixedTotal.Text = selectedMonth.NonFixedExpensesTotalCost.ToString("#,00");
 
                 nMonthLimit.Value = selectedMonth.Model.ExpenseMax;
                 nMonthContinuosLimit.Value = selectedMonth.Model.ContinuosExpenseMax;

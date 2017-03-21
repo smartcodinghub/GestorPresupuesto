@@ -31,8 +31,19 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridMonths = new System.Windows.Forms.DataGridView();
+            this.MonthTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcMonthIsOverLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblMonthNonFixedTotal = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.lblMonthFixedTotal = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.lblMonthTotal = new System.Windows.Forms.Label();
             this.bSave = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
@@ -52,13 +63,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.nMonthLimit = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
-            this.MonthTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcMonthIsOverLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridMonths)).BeginInit();
@@ -126,6 +130,55 @@
             this.dataGridMonths.TabIndex = 1;
             this.dataGridMonths.SelectionChanged += new System.EventHandler(this.dataGridMonths_SelectionChanged);
             // 
+            // MonthTitle
+            // 
+            this.MonthTitle.DataPropertyName = "MonthTitle";
+            this.MonthTitle.FillWeight = 28F;
+            this.MonthTitle.HeaderText = "Month";
+            this.MonthTitle.Name = "MonthTitle";
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "NonFixedExpensesTotalCost";
+            this.Column3.FillWeight = 22F;
+            this.Column3.HeaderText = "T. Caprichos";
+            this.Column3.Name = "Column3";
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "ExpenseMax";
+            this.Column6.FillWeight = 22F;
+            this.Column6.HeaderText = "L. Caprichos";
+            this.Column6.Name = "Column6";
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "FixedExpensesTotalCost";
+            this.Column5.FillWeight = 18F;
+            this.Column5.HeaderText = "Total Fijos";
+            this.Column5.Name = "Column5";
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "ContinuosExpenseMax";
+            this.Column7.FillWeight = 20F;
+            this.Column7.HeaderText = "L. Fijos";
+            this.Column7.Name = "Column7";
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "ExpensesTotalCost";
+            this.Column1.FillWeight = 20F;
+            this.Column1.HeaderText = "Total";
+            this.Column1.Name = "Column1";
+            // 
+            // dgvcMonthIsOverLimit
+            // 
+            this.dgvcMonthIsOverLimit.DataPropertyName = "IsOverLimit";
+            this.dgvcMonthIsOverLimit.HeaderText = "IsOverLimit";
+            this.dgvcMonthIsOverLimit.Name = "dgvcMonthIsOverLimit";
+            this.dgvcMonthIsOverLimit.Visible = false;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -139,6 +192,10 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.lblMonthNonFixedTotal);
+            this.panel2.Controls.Add(this.label12);
+            this.panel2.Controls.Add(this.lblMonthFixedTotal);
+            this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.lblMonthTotal);
             this.panel2.Controls.Add(this.bSave);
             this.panel2.Controls.Add(this.label10);
@@ -162,6 +219,54 @@
             this.panel2.Size = new System.Drawing.Size(682, 657);
             this.panel2.TabIndex = 1;
             // 
+            // lblMonthNonFixedTotal
+            // 
+            this.lblMonthNonFixedTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMonthNonFixedTotal.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMonthNonFixedTotal.Location = new System.Drawing.Point(435, 622);
+            this.lblMonthNonFixedTotal.Margin = new System.Windows.Forms.Padding(15);
+            this.lblMonthNonFixedTotal.Name = "lblMonthNonFixedTotal";
+            this.lblMonthNonFixedTotal.Size = new System.Drawing.Size(43, 20);
+            this.lblMonthNonFixedTotal.TabIndex = 20;
+            this.lblMonthNonFixedTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label12
+            // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(361, 622);
+            this.label12.Margin = new System.Windows.Forms.Padding(15);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(77, 20);
+            this.label12.TabIndex = 19;
+            this.label12.Text = "Caprichos:";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblMonthFixedTotal
+            // 
+            this.lblMonthFixedTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMonthFixedTotal.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMonthFixedTotal.Location = new System.Drawing.Point(515, 622);
+            this.lblMonthFixedTotal.Margin = new System.Windows.Forms.Padding(15);
+            this.lblMonthFixedTotal.Name = "lblMonthFixedTotal";
+            this.lblMonthFixedTotal.Size = new System.Drawing.Size(41, 20);
+            this.lblMonthFixedTotal.TabIndex = 18;
+            this.lblMonthFixedTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(482, 622);
+            this.label11.Margin = new System.Windows.Forms.Padding(15);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(36, 20);
+            this.label11.TabIndex = 17;
+            this.label11.Text = "Fijo:";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // lblMonthTotal
             // 
             this.lblMonthTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -171,7 +276,7 @@
             this.lblMonthTotal.Name = "lblMonthTotal";
             this.lblMonthTotal.Size = new System.Drawing.Size(46, 20);
             this.lblMonthTotal.TabIndex = 16;
-            this.lblMonthTotal.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lblMonthTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // bSave
             // 
@@ -258,12 +363,13 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(571, 622);
+            this.label7.Location = new System.Drawing.Point(570, 622);
             this.label7.Margin = new System.Windows.Forms.Padding(15);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(46, 20);
             this.label7.TabIndex = 8;
             this.label7.Text = "Total:";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // dataGridExpenses
             // 
@@ -391,55 +497,6 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Detalle del Mes";
             // 
-            // MonthTitle
-            // 
-            this.MonthTitle.DataPropertyName = "MonthTitle";
-            this.MonthTitle.FillWeight = 28F;
-            this.MonthTitle.HeaderText = "Month";
-            this.MonthTitle.Name = "MonthTitle";
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "NonFixedExpensesTotalCost";
-            this.Column3.FillWeight = 22F;
-            this.Column3.HeaderText = "T. Caprichos";
-            this.Column3.Name = "Column3";
-            // 
-            // Column6
-            // 
-            this.Column6.DataPropertyName = "ExpenseMax";
-            this.Column6.FillWeight = 22F;
-            this.Column6.HeaderText = "L. Caprichos";
-            this.Column6.Name = "Column6";
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "FixedExpensesTotalCost";
-            this.Column5.FillWeight = 18F;
-            this.Column5.HeaderText = "Total Fijos";
-            this.Column5.Name = "Column5";
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "ContinuosExpenseMax";
-            this.Column7.FillWeight = 20F;
-            this.Column7.HeaderText = "L. Fijos";
-            this.Column7.Name = "Column7";
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "ExpensesTotalCost";
-            this.Column1.FillWeight = 20F;
-            this.Column1.HeaderText = "Total";
-            this.Column1.Name = "Column1";
-            // 
-            // dgvcMonthIsOverLimit
-            // 
-            this.dgvcMonthIsOverLimit.DataPropertyName = "IsOverLimit";
-            this.dgvcMonthIsOverLimit.HeaderText = "IsOverLimit";
-            this.dgvcMonthIsOverLimit.Name = "dgvcMonthIsOverLimit";
-            this.dgvcMonthIsOverLimit.Visible = false;
-            // 
             // MainWindow
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -498,6 +555,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcMonthIsOverLimit;
+        private System.Windows.Forms.Label lblMonthFixedTotal;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblMonthNonFixedTotal;
+        private System.Windows.Forms.Label label12;
     }
 }
 
