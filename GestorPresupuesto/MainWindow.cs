@@ -131,5 +131,19 @@ namespace GestorPresupuesto
 
             return null;
         }
+
+        private void dataGridMonths_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e) => GridRightClick(dataGridMonths, contextMonths, e);
+        private void dataGridExpenses_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e) => GridRightClick(dataGridExpenses, contextExpenses, e);
+
+        private void GridRightClick(DataGridView dataGrid, ContextMenuStrip menu, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.Button == MouseButtons.Right)
+            {
+                dataGrid.ClearSelection();
+                dataGrid.Rows[e.RowIndex].Selected = true;
+                menu.Show(dataGridExpenses, dataGrid.PointToClient(Cursor.Position));
+            }
+        }
+
     }
 }

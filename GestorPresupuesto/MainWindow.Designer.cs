@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridMonths = new System.Windows.Forms.DataGridView();
@@ -54,16 +55,21 @@
             this.tbConcept = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.dataGridExpenses = new System.Windows.Forms.DataGridView();
+            this.dgcExpenseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcExpenseCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcExpenseIsFixed = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.nMonthContinuosLimit = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.nMonthLimit = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
-            this.dgcExpenseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgcExpenseCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgcExpenseIsFixed = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.contextMonths = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuDeleteMonth = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextExpenses = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridMonths)).BeginInit();
@@ -72,6 +78,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpenses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nMonthContinuosLimit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nMonthLimit)).BeginInit();
+            this.contextMonths.SuspendLayout();
+            this.contextExpenses.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -129,6 +137,7 @@
             this.dataGridMonths.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridMonths.Size = new System.Drawing.Size(528, 592);
             this.dataGridMonths.TabIndex = 1;
+            this.dataGridMonths.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridMonths_CellMouseUp);
             this.dataGridMonths.SelectionChanged += new System.EventHandler(this.dataGridMonths_SelectionChanged);
             // 
             // MonthTitle
@@ -395,6 +404,42 @@
             this.dataGridExpenses.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridExpenses.Size = new System.Drawing.Size(652, 461);
             this.dataGridExpenses.TabIndex = 7;
+            this.dataGridExpenses.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridExpenses_CellMouseUp);
+            // 
+            // dgcExpenseName
+            // 
+            this.dgcExpenseName.DataPropertyName = "Name";
+            this.dgcExpenseName.FillWeight = 70F;
+            this.dgcExpenseName.HeaderText = "Concepto";
+            this.dgcExpenseName.Name = "dgcExpenseName";
+            // 
+            // dgcExpenseCost
+            // 
+            this.dgcExpenseCost.DataPropertyName = "Cost";
+            this.dgcExpenseCost.FillWeight = 15F;
+            this.dgcExpenseCost.HeaderText = "Coste";
+            this.dgcExpenseCost.Name = "dgcExpenseCost";
+            // 
+            // dgcExpenseIsFixed
+            // 
+            this.dgcExpenseIsFixed.DataPropertyName = "IsFixed";
+            this.dgcExpenseIsFixed.FillWeight = 15F;
+            this.dgcExpenseIsFixed.HeaderText = "Gasto Fijo?";
+            this.dgcExpenseIsFixed.Name = "dgcExpenseIsFixed";
+            this.dgcExpenseIsFixed.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgcExpenseIsFixed.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Column2
+            // 
+            this.Column2.FillWeight = 10F;
+            this.Column2.HeaderText = "Editar";
+            this.Column2.MinimumWidth = 40;
+            this.Column2.Name = "Column2";
+            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column2.Text = "Editar";
+            this.Column2.ToolTipText = "Entra en modo edición del gasto seleccionado.";
+            this.Column2.UseColumnTextForButtonValue = true;
             // 
             // label6
             // 
@@ -476,40 +521,38 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Detalle del Mes";
             // 
-            // dgcExpenseName
+            // contextMonths
             // 
-            this.dgcExpenseName.DataPropertyName = "Name";
-            this.dgcExpenseName.FillWeight = 70F;
-            this.dgcExpenseName.HeaderText = "Concepto";
-            this.dgcExpenseName.Name = "dgcExpenseName";
+            this.contextMonths.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contextMenuDeleteMonth});
+            this.contextMonths.Name = "contextMonths";
+            this.contextMonths.Size = new System.Drawing.Size(181, 26);
             // 
-            // dgcExpenseCost
+            // contextMenuDeleteMonth
             // 
-            this.dgcExpenseCost.DataPropertyName = "Cost";
-            this.dgcExpenseCost.FillWeight = 15F;
-            this.dgcExpenseCost.HeaderText = "Coste";
-            this.dgcExpenseCost.Name = "dgcExpenseCost";
+            this.contextMenuDeleteMonth.Name = "contextMenuDeleteMonth";
+            this.contextMenuDeleteMonth.Size = new System.Drawing.Size(180, 22);
+            this.contextMenuDeleteMonth.Text = "toolStripMenuItem1";
             // 
-            // dgcExpenseIsFixed
+            // contextExpenses
             // 
-            this.dgcExpenseIsFixed.DataPropertyName = "IsFixed";
-            this.dgcExpenseIsFixed.FillWeight = 15F;
-            this.dgcExpenseIsFixed.HeaderText = "Gasto Fijo?";
-            this.dgcExpenseIsFixed.Name = "dgcExpenseIsFixed";
-            this.dgcExpenseIsFixed.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgcExpenseIsFixed.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.contextExpenses.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contextMenuEdit,
+            this.contextMenuDelete});
+            this.contextExpenses.Name = "contextExpenses";
+            this.contextExpenses.Size = new System.Drawing.Size(181, 48);
             // 
-            // Column2
+            // contextMenuEdit
             // 
-            this.Column2.FillWeight = 10F;
-            this.Column2.HeaderText = "Editar";
-            this.Column2.MinimumWidth = 40;
-            this.Column2.Name = "Column2";
-            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column2.Text = "Editar";
-            this.Column2.ToolTipText = "Entra en modo edición del gasto seleccionado.";
-            this.Column2.UseColumnTextForButtonValue = true;
+            this.contextMenuEdit.Name = "contextMenuEdit";
+            this.contextMenuEdit.Size = new System.Drawing.Size(180, 22);
+            this.contextMenuEdit.Text = "toolStripMenuItem1";
+            // 
+            // contextMenuDelete
+            // 
+            this.contextMenuDelete.Name = "contextMenuDelete";
+            this.contextMenuDelete.Size = new System.Drawing.Size(180, 22);
+            this.contextMenuDelete.Text = "toolStripMenuItem2";
             // 
             // MainWindow
             // 
@@ -532,6 +575,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpenses)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nMonthContinuosLimit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nMonthLimit)).EndInit();
+            this.contextMonths.ResumeLayout(false);
+            this.contextExpenses.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -574,6 +619,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgcExpenseCost;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgcExpenseIsFixed;
         private System.Windows.Forms.DataGridViewButtonColumn Column2;
+        private System.Windows.Forms.ContextMenuStrip contextMonths;
+        private System.Windows.Forms.ToolStripMenuItem contextMenuDeleteMonth;
+        private System.Windows.Forms.ContextMenuStrip contextExpenses;
+        private System.Windows.Forms.ToolStripMenuItem contextMenuEdit;
+        private System.Windows.Forms.ToolStripMenuItem contextMenuDelete;
     }
 }
 
