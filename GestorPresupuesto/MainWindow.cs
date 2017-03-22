@@ -65,13 +65,54 @@ namespace GestorPresupuesto
 
             if (selectedMonth != null && !String.IsNullOrEmpty(tbConcept.Text) && nCost.Value > 0)
             {
-                modelController.SaveNewExpense(selectedMonth.Id, new Expense()
+                modelController.AddExpense(selectedMonth.Id, new Expense()
                 {
                     Name = tbConcept.Text,
                     Cost = nCost.Value,
                     IsFixed = cbFixed.Checked
                 });
 
+                RefreshView();
+            }
+        }
+
+        private void dataGridMonths_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e) => GridRightClick(dataGridMonths, contextMonths, e);
+        private void dataGridExpenses_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e) => GridRightClick(dataGridExpenses, contextExpenses, e);
+
+        private void GridRightClick(DataGridView dataGrid, ContextMenuStrip menu, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.Button == MouseButtons.Right)
+            {
+                dataGrid.ClearSelection();
+                dataGrid.Rows[e.RowIndex].Selected = true;
+                menu.Show(dataGrid, dataGrid.PointToClient(Cursor.Position));
+            }
+        }
+
+        private void contextMenuEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void contextMenuDelete_Click(object sender, EventArgs e)
+        {
+            Expense selectedExpense = GetSelectedExpense()?.Model;
+            MonthModel selectedMonth = this.GetSelectedMonth()?.Model;
+
+            if (selectedMonth != null && selectedExpense != null)
+            {
+                modelController.RemoveExpense(selectedMonth.Id, selectedExpense);
+                RefreshView();
+            }
+        }
+
+        private void contextMenuDeleteMonth_Click(object sender, EventArgs e)
+        {
+            MonthModel selectedMonth = this.GetSelectedMonth()?.Model;
+
+            if (selectedMonth != null)
+            {
+                modelController.RemoveMonth(selectedMonth.Id);
                 RefreshView();
             }
         }
@@ -132,18 +173,22 @@ namespace GestorPresupuesto
             return null;
         }
 
-        private void dataGridMonths_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e) => GridRightClick(dataGridMonths, contextMonths, e);
-        private void dataGridExpenses_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e) => GridRightClick(dataGridExpenses, contextExpenses, e);
-
-        private void GridRightClick(DataGridView dataGrid, ContextMenuStrip menu, DataGridViewCellMouseEventArgs e)
+        private ExpenseViewModel GetSelectedExpense()
         {
-            if (e.RowIndex >= 0 && e.Button == MouseButtons.Right)
+            if (dataGridExpenses.SelectedRows.Count > 0)
             {
-                dataGrid.ClearSelection();
-                dataGrid.Rows[e.RowIndex].Selected = true;
-                menu.Show(dataGridExpenses, dataGrid.PointToClient(Cursor.Position));
-            }
-        }
+                ExpenseViewModel[] expenseModels = dataGridExpenses.DataSource as ExpenseViewModel[];
 
+                if (expenseModels != null)
+                {
+                    int index = dataGridExpenses.SelectedRows[0].Index;
+
+                    if (index < expenseModels.Length)
+                        return expenseModels[index];
+                }
+            }
+
+            return null;
+        }
     }
 }

@@ -9,18 +9,46 @@ namespace GestorPresupuesto.Controller
 {
     public class MonthModelController
     {
+        private ISettingsController settingsController;
         public Dictionary<int, MonthModel> Months { get; set; }
 
         public MonthModelController(IPersistenceController persistenceController, ISettingsController settingsController)
         {
             this.Months = persistenceController.Get().Months.ToDictionary(m => m.Id);
-            this.AddTodaysMonth(settingsController.Settings);
+            this.settingsController = settingsController;
+            this.AddMonth(DateTime.Now);
         }
 
-        public void SaveNewExpense(int id, Expense expense)
+        private void AddMonth(DateTime time)
+        {
+            MonthModel model = new MonthModel(time);
+
+            if (!Months.ContainsKey(model.Id))
+            {
+                Settings settings = settingsController.Settings;
+
+                model.ContinuosExpenseMax = settings.MonthContinuosExpenseMax;
+                model.ExpenseMax = settings.MonthExpenseMax;
+
+                this.Months[model.Id] = model;
+            }
+        }
+
+        public void AddExpense(int id, Expense expense)
         {
             if (Months.ContainsKey(id))
                 this.Months[id].Expenses.Add(expense);
+        }
+
+        public void RemoveMonth(int id)
+        {
+            this.Months.Remove(id);
+        }
+
+        public void RemoveExpense(int id, Expense expense)
+        {
+            if (Months.ContainsKey(id))
+                this.Months[id].Expenses.Remove(expense);
         }
 
         public ExpenseViewModel[] ExpensesByMonthIdAsExpenseViewModel(int id)
@@ -36,18 +64,6 @@ namespace GestorPresupuesto.Controller
         public HashSet<MonthModel> MonthsAsSet()
         {
             return new HashSet<MonthModel>(this.Months.Values);
-        }
-
-        private void AddTodaysMonth(Settings settings)
-        {
-            MonthModel model = new MonthModel(DateTime.Now);
-
-            if (!Months.ContainsKey(model.Id))
-            {
-                model.ContinuosExpenseMax = settings.MonthContinuosExpenseMax;
-                model.ExpenseMax = settings.MonthExpenseMax;
-                this.Months[model.Id] = model;
-            }
         }
     }
 }

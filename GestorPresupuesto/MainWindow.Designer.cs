@@ -66,6 +66,8 @@
             this.nMonthLimit = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.contextMonths = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuAddMonth = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuEditMonth = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuDeleteMonth = new System.Windows.Forms.ToolStripMenuItem();
             this.contextExpenses = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -524,15 +526,30 @@
             // contextMonths
             // 
             this.contextMonths.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contextMenuAddMonth,
+            this.contextMenuEditMonth,
             this.contextMenuDeleteMonth});
             this.contextMonths.Name = "contextMonths";
-            this.contextMonths.Size = new System.Drawing.Size(181, 26);
+            this.contextMonths.Size = new System.Drawing.Size(153, 92);
+            // 
+            // contextMenuAddMonth
+            // 
+            this.contextMenuAddMonth.Name = "contextMenuAddMonth";
+            this.contextMenuAddMonth.Size = new System.Drawing.Size(109, 22);
+            this.contextMenuAddMonth.Text = "Añadir";
+            // 
+            // contextMenuEditMonth
+            // 
+            this.contextMenuEditMonth.Name = "contextMenuEditMonth";
+            this.contextMenuEditMonth.Size = new System.Drawing.Size(109, 22);
+            this.contextMenuEditMonth.Text = "Editar";
             // 
             // contextMenuDeleteMonth
             // 
             this.contextMenuDeleteMonth.Name = "contextMenuDeleteMonth";
-            this.contextMenuDeleteMonth.Size = new System.Drawing.Size(180, 22);
-            this.contextMenuDeleteMonth.Text = "toolStripMenuItem1";
+            this.contextMenuDeleteMonth.Size = new System.Drawing.Size(152, 22);
+            this.contextMenuDeleteMonth.Text = "Borrar";
+            this.contextMenuDeleteMonth.Click += new System.EventHandler(this.contextMenuDeleteMonth_Click);
             // 
             // contextExpenses
             // 
@@ -540,19 +557,21 @@
             this.contextMenuEdit,
             this.contextMenuDelete});
             this.contextExpenses.Name = "contextExpenses";
-            this.contextExpenses.Size = new System.Drawing.Size(181, 48);
+            this.contextExpenses.Size = new System.Drawing.Size(107, 48);
             // 
             // contextMenuEdit
             // 
             this.contextMenuEdit.Name = "contextMenuEdit";
-            this.contextMenuEdit.Size = new System.Drawing.Size(180, 22);
-            this.contextMenuEdit.Text = "toolStripMenuItem1";
+            this.contextMenuEdit.Size = new System.Drawing.Size(106, 22);
+            this.contextMenuEdit.Text = "Editar";
+            this.contextMenuEdit.Click += new System.EventHandler(this.contextMenuEdit_Click);
             // 
             // contextMenuDelete
             // 
             this.contextMenuDelete.Name = "contextMenuDelete";
-            this.contextMenuDelete.Size = new System.Drawing.Size(180, 22);
-            this.contextMenuDelete.Text = "toolStripMenuItem2";
+            this.contextMenuDelete.Size = new System.Drawing.Size(106, 22);
+            this.contextMenuDelete.Text = "Borrar";
+            this.contextMenuDelete.Click += new System.EventHandler(this.contextMenuDelete_Click);
             // 
             // MainWindow
             // 
@@ -624,6 +643,8 @@
         private System.Windows.Forms.ContextMenuStrip contextExpenses;
         private System.Windows.Forms.ToolStripMenuItem contextMenuEdit;
         private System.Windows.Forms.ToolStripMenuItem contextMenuDelete;
+        private System.Windows.Forms.ToolStripMenuItem contextMenuEditMonth;
+        private System.Windows.Forms.ToolStripMenuItem contextMenuAddMonth;
     }
 }
 
