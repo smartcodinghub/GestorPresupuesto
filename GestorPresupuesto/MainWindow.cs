@@ -109,9 +109,7 @@ namespace GestorPresupuesto
 
         private void contextMenuEdit_Click(object sender, EventArgs e)
         {
-            Expense expense = GetSelectedExpense()?.Model;
-
-            expenseEditor.ModifyExpense(expense);
+            EditMonth();
         }
 
         private void contextMenuDelete_Click(object sender, EventArgs e)
@@ -145,6 +143,13 @@ namespace GestorPresupuesto
                 modelController.RemoveMonth(selectedMonth.Id);
                 RefreshView();
             }
+        }
+
+        private void EditMonth()
+        {
+            Expense expense = GetSelectedExpense()?.Model;
+
+            expenseEditor.ModifyExpense(expense);
         }
 
         #endregion
@@ -226,5 +231,15 @@ namespace GestorPresupuesto
         }
 
         #endregion
+
+        private void dataGridExpenses_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                EditMonth();
+            }
+        }
     }
 }

@@ -41,6 +41,7 @@
             this.dgvcMonthIsOverLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.bClear = new System.Windows.Forms.Button();
             this.expenseEditor = new GestorPresupuesto.ExpenseEditorControl();
             this.lblMonthNonFixedTotal = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -67,7 +68,6 @@
             this.contextExpenses = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.bClear = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridMonths)).BeginInit();
@@ -222,11 +222,23 @@
             this.panel2.Size = new System.Drawing.Size(682, 657);
             this.panel2.TabIndex = 1;
             // 
-            // expenseEditorControl1
+            // bClear
+            // 
+            this.bClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bClear.Location = new System.Drawing.Point(643, 82);
+            this.bClear.Name = "bClear";
+            this.bClear.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.bClear.Size = new System.Drawing.Size(24, 26);
+            this.bClear.TabIndex = 22;
+            this.bClear.Text = "-";
+            this.bClear.UseVisualStyleBackColor = true;
+            this.bClear.Click += new System.EventHandler(this.bClear_Click);
+            // 
+            // expenseEditor
             // 
             this.expenseEditor.Location = new System.Drawing.Point(15, 82);
             this.expenseEditor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.expenseEditor.Name = "expenseEditorControl1";
+            this.expenseEditor.Name = "expenseEditor";
             this.expenseEditor.Size = new System.Drawing.Size(584, 31);
             this.expenseEditor.TabIndex = 21;
             // 
@@ -336,6 +348,7 @@
             this.dataGridExpenses.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridExpenses.Size = new System.Drawing.Size(652, 461);
             this.dataGridExpenses.TabIndex = 7;
+            this.dataGridExpenses.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridExpenses_CellContentClick);
             this.dataGridExpenses.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridExpenses_CellMouseUp);
             // 
             // dgcExpenseName
@@ -504,18 +517,6 @@
             this.contextMenuDelete.Size = new System.Drawing.Size(106, 22);
             this.contextMenuDelete.Text = "Borrar";
             this.contextMenuDelete.Click += new System.EventHandler(this.contextMenuDelete_Click);
-            // 
-            // bClear
-            // 
-            this.bClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bClear.Location = new System.Drawing.Point(643, 82);
-            this.bClear.Name = "bClear";
-            this.bClear.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.bClear.Size = new System.Drawing.Size(24, 26);
-            this.bClear.TabIndex = 22;
-            this.bClear.Text = "-";
-            this.bClear.UseVisualStyleBackColor = true;
-            this.bClear.Click += new System.EventHandler(this.bClear_Click);
             // 
             // MainWindow
             // 
