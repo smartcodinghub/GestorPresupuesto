@@ -42,23 +42,6 @@ namespace GestorPresupuesto
             });
         }
 
-        private void dataGridMonths_SelectionChanged(object sender, EventArgs e)
-        {
-            MonthViewModel selectedMonth = this.GetSelectedMonth();
-
-            if (selectedMonth != null)
-            {
-                dataGridExpenses.DataSource = modelController.ExpensesByMonthIdAsExpenseViewModel(selectedMonth.Model.Id);
-
-                lblMonthTotal.Text = selectedMonth.ExpensesTotalCost.ToString("#,00");
-                lblMonthFixedTotal.Text = selectedMonth.FixedExpensesTotalCost.ToString("#,00");
-                lblMonthNonFixedTotal.Text = selectedMonth.NonFixedExpensesTotalCost.ToString("#,00");
-
-                nMonthLimit.Value = selectedMonth.Model.ExpenseMax;
-                nMonthContinuosLimit.Value = selectedMonth.Model.ContinuosExpenseMax;
-            }
-        }
-
         private void bSave_Click(object sender, EventArgs e)
         {
             MonthModel selectedMonth = this.GetSelectedMonth()?.Model;
@@ -76,6 +59,25 @@ namespace GestorPresupuesto
             }
         }
 
+        #region Datagrids Events
+
+        private void dataGridMonths_SelectionChanged(object sender, EventArgs e)
+        {
+            MonthViewModel selectedMonth = this.GetSelectedMonth();
+
+            if (selectedMonth != null)
+            {
+                dataGridExpenses.DataSource = modelController.ExpensesByMonthIdAsExpenseViewModel(selectedMonth.Model.Id);
+
+                lblMonthTotal.Text = selectedMonth.ExpensesTotalCost.ToString("#,00");
+                lblMonthFixedTotal.Text = selectedMonth.FixedExpensesTotalCost.ToString("#,00");
+                lblMonthNonFixedTotal.Text = selectedMonth.NonFixedExpensesTotalCost.ToString("#,00");
+
+                nMonthLimit.Value = selectedMonth.Model.ExpenseMax;
+                nMonthContinuosLimit.Value = selectedMonth.Model.ContinuosExpenseMax;
+            }
+        }
+
         private void dataGridMonths_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e) => GridRightClick(dataGridMonths, contextMonths, e);
         private void dataGridExpenses_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e) => GridRightClick(dataGridExpenses, contextExpenses, e);
 
@@ -89,9 +91,13 @@ namespace GestorPresupuesto
             }
         }
 
+        #endregion
+
+        #region ContextMenus
+
         private void contextMenuEdit_Click(object sender, EventArgs e)
         {
-
+            Expense expense = GetSelectedExpense()?.Model;
         }
 
         private void contextMenuDelete_Click(object sender, EventArgs e)
@@ -106,6 +112,16 @@ namespace GestorPresupuesto
             }
         }
 
+        private void contextMenuAddMonth_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void contextMenuEditMonth_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void contextMenuDeleteMonth_Click(object sender, EventArgs e)
         {
             MonthModel selectedMonth = this.GetSelectedMonth()?.Model;
@@ -116,6 +132,8 @@ namespace GestorPresupuesto
                 RefreshView();
             }
         }
+
+        #endregion
 
         private void nMonthContinuosLimit_Update(object sender, EventArgs e)
         {
@@ -141,6 +159,8 @@ namespace GestorPresupuesto
                 RefreshView();
             }
         }
+
+        #region Helpers
 
         private void RefreshView()
         {
@@ -189,6 +209,56 @@ namespace GestorPresupuesto
             }
 
             return null;
+        }
+
+        #endregion
+
+        private class ExpenseEditor
+        {
+            private Expense expense;
+            private TextBox txtConcept;
+            private NumericUpDown nCost;
+            private CheckBox cbFixed;
+
+            public Boolean IsEditing { get; private set; }
+
+            public ExpenseEditor(TextBox txtConcept, NumericUpDown nCost, CheckBox cbFixed)
+            {
+                this.expense = null;
+                this.txtConcept = txtConcept;
+                this.nCost = nCost;
+                this.cbFixed = cbFixed;
+                this.IsEditing = false;
+            }
+
+            public Boolean ModifyExpense(Expense expense)
+            {
+                if (!IsEditing)
+                {
+                    this.expense = expense;
+                    this.IsEditing = true;
+                    return true;
+                }
+
+                return false;
+            }
+
+            public (Boolean, Expense) CommitExpense()
+            {
+                if (IsEditing && nCost.Value > 0)
+                {
+                    expense.Name = String.IsNullOrWhiteSpace(txtConcept.Text) ? "No hay concepto" : txtConcept.Text;
+                    expense.Cost = nCost.Value;
+                    expense.IsFixed = cbFixed.Checked;
+
+                    IsEditing = false;
+                    expense = null;
+
+                    return (true, expense);
+                }
+
+                return (false, expense);
+            }
         }
     }
 }

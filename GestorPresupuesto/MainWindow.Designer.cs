@@ -537,17 +537,19 @@
             this.contextMenuAddMonth.Name = "contextMenuAddMonth";
             this.contextMenuAddMonth.Size = new System.Drawing.Size(109, 22);
             this.contextMenuAddMonth.Text = "Añadir";
+            this.contextMenuAddMonth.Click += new System.EventHandler(this.contextMenuAddMonth_Click);
             // 
             // contextMenuEditMonth
             // 
             this.contextMenuEditMonth.Name = "contextMenuEditMonth";
-            this.contextMenuEditMonth.Size = new System.Drawing.Size(109, 22);
+            this.contextMenuEditMonth.Size = new System.Drawing.Size(152, 22);
             this.contextMenuEditMonth.Text = "Editar";
+            this.contextMenuEditMonth.Click += new System.EventHandler(this.contextMenuEditMonth_Click);
             // 
             // contextMenuDeleteMonth
             // 
             this.contextMenuDeleteMonth.Name = "contextMenuDeleteMonth";
-            this.contextMenuDeleteMonth.Size = new System.Drawing.Size(152, 22);
+            this.contextMenuDeleteMonth.Size = new System.Drawing.Size(109, 22);
             this.contextMenuDeleteMonth.Text = "Borrar";
             this.contextMenuDeleteMonth.Click += new System.EventHandler(this.contextMenuDeleteMonth_Click);
             // 
