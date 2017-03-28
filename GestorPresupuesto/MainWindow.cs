@@ -30,6 +30,8 @@ namespace GestorPresupuesto
             settingsController = new SettingsController(persistenceController);
             modelController = new MonthModelController(persistenceController, settingsController);
 
+            expenseEditor.NewExpense();
+
             RefreshView();
         }
 
@@ -46,17 +48,27 @@ namespace GestorPresupuesto
         {
             MonthModel selectedMonth = this.GetSelectedMonth()?.Model;
 
-            if (selectedMonth != null && !String.IsNullOrEmpty(tbConcept.Text) && nCost.Value > 0)
+            var (correct, expense) = expenseEditor.CommitExpense();
+            if (selectedMonth != null && correct)
             {
-                modelController.AddExpense(selectedMonth.Id, new Expense()
-                {
-                    Name = tbConcept.Text,
-                    Cost = nCost.Value,
-                    IsFixed = cbFixed.Checked
-                });
+                /* If not editing, add it */
+                if (!expenseEditor.IsEditing)
+                    modelController.AddExpense(selectedMonth.Id, expense);
+
+                ClearExpenseEditor();
 
                 RefreshView();
             }
+        }
+
+        private void bClear_Click(object sender, EventArgs e)
+        {
+            ClearExpenseEditor();
+        }
+
+        private void ClearExpenseEditor()
+        {
+            expenseEditor.CancelAndClearModification();
         }
 
         #region Datagrids Events
@@ -98,6 +110,8 @@ namespace GestorPresupuesto
         private void contextMenuEdit_Click(object sender, EventArgs e)
         {
             Expense expense = GetSelectedExpense()?.Model;
+
+            expenseEditor.ModifyExpense(expense);
         }
 
         private void contextMenuDelete_Click(object sender, EventArgs e)
@@ -212,53 +226,5 @@ namespace GestorPresupuesto
         }
 
         #endregion
-
-        private class ExpenseEditor
-        {
-            private Expense expense;
-            private TextBox txtConcept;
-            private NumericUpDown nCost;
-            private CheckBox cbFixed;
-
-            public Boolean IsEditing { get; private set; }
-
-            public ExpenseEditor(TextBox txtConcept, NumericUpDown nCost, CheckBox cbFixed)
-            {
-                this.expense = null;
-                this.txtConcept = txtConcept;
-                this.nCost = nCost;
-                this.cbFixed = cbFixed;
-                this.IsEditing = false;
-            }
-
-            public Boolean ModifyExpense(Expense expense)
-            {
-                if (!IsEditing)
-                {
-                    this.expense = expense;
-                    this.IsEditing = true;
-                    return true;
-                }
-
-                return false;
-            }
-
-            public (Boolean, Expense) CommitExpense()
-            {
-                if (IsEditing && nCost.Value > 0)
-                {
-                    expense.Name = String.IsNullOrWhiteSpace(txtConcept.Text) ? "No hay concepto" : txtConcept.Text;
-                    expense.Cost = nCost.Value;
-                    expense.IsFixed = cbFixed.Checked;
-
-                    IsEditing = false;
-                    expense = null;
-
-                    return (true, expense);
-                }
-
-                return (false, expense);
-            }
-        }
     }
 }

@@ -39,9 +39,10 @@
             // 
             // label10
             // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(419, 3);
+            this.label10.Location = new System.Drawing.Point(492, 5);
             this.label10.Margin = new System.Windows.Forms.Padding(15, 10, 5, 10);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(55, 17);
@@ -50,8 +51,9 @@
             // 
             // cbFixed
             // 
+            this.cbFixed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbFixed.AutoSize = true;
-            this.cbFixed.Location = new System.Drawing.Point(482, 6);
+            this.cbFixed.Location = new System.Drawing.Point(555, 8);
             this.cbFixed.Name = "cbFixed";
             this.cbFixed.Size = new System.Drawing.Size(15, 14);
             this.cbFixed.TabIndex = 20;
@@ -59,9 +61,10 @@
             // 
             // label9
             // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(277, 3);
+            this.label9.Location = new System.Drawing.Point(372, 5);
             this.label9.Margin = new System.Windows.Forms.Padding(15, 10, 5, 10);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(41, 17);
@@ -72,7 +75,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(-3, 3);
+            this.label8.Location = new System.Drawing.Point(-3, 5);
             this.label8.Margin = new System.Windows.Forms.Padding(15, 10, 5, 10);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(64, 17);
@@ -81,8 +84,9 @@
             // 
             // nCost
             // 
+            this.nCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.nCost.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nCost.Location = new System.Drawing.Point(338, 1);
+            this.nCost.Location = new System.Drawing.Point(428, 2);
             this.nCost.Margin = new System.Windows.Forms.Padding(15);
             this.nCost.Maximum = new decimal(new int[] {
             10000,
@@ -95,15 +99,16 @@
             // 
             // tbConcept
             // 
+            this.tbConcept.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbConcept.Location = new System.Drawing.Point(69, 3);
             this.tbConcept.Name = "tbConcept";
-            this.tbConcept.Size = new System.Drawing.Size(162, 20);
+            this.tbConcept.Size = new System.Drawing.Size(285, 20);
             this.tbConcept.TabIndex = 16;
             // 
             // ExpenseEditorControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.label10);
             this.Controls.Add(this.cbFixed);
             this.Controls.Add(this.label9);
@@ -111,7 +116,7 @@
             this.Controls.Add(this.nCost);
             this.Controls.Add(this.tbConcept);
             this.Name = "ExpenseEditorControl";
-            this.Size = new System.Drawing.Size(498, 26);
+            this.Size = new System.Drawing.Size(571, 31);
             ((System.ComponentModel.ISupportInitialize)(this.nCost)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

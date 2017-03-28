@@ -41,18 +41,13 @@
             this.dgvcMonthIsOverLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.expenseEditor = new GestorPresupuesto.ExpenseEditorControl();
             this.lblMonthNonFixedTotal = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.lblMonthFixedTotal = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.lblMonthTotal = new System.Windows.Forms.Label();
             this.bSave = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.cbFixed = new System.Windows.Forms.CheckBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.nCost = new System.Windows.Forms.NumericUpDown();
-            this.tbConcept = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.dataGridExpenses = new System.Windows.Forms.DataGridView();
             this.dgcExpenseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,11 +67,11 @@
             this.contextExpenses = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.bClear = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridMonths)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nCost)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpenses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nMonthContinuosLimit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nMonthLimit)).BeginInit();
@@ -204,18 +199,14 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.bClear);
+            this.panel2.Controls.Add(this.expenseEditor);
             this.panel2.Controls.Add(this.lblMonthNonFixedTotal);
             this.panel2.Controls.Add(this.label12);
             this.panel2.Controls.Add(this.lblMonthFixedTotal);
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.lblMonthTotal);
             this.panel2.Controls.Add(this.bSave);
-            this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.cbFixed);
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.nCost);
-            this.panel2.Controls.Add(this.tbConcept);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.dataGridExpenses);
             this.panel2.Controls.Add(this.label6);
@@ -230,6 +221,14 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(682, 657);
             this.panel2.TabIndex = 1;
+            // 
+            // expenseEditorControl1
+            // 
+            this.expenseEditor.Location = new System.Drawing.Point(15, 82);
+            this.expenseEditor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.expenseEditor.Name = "expenseEditorControl1";
+            this.expenseEditor.Size = new System.Drawing.Size(584, 31);
+            this.expenseEditor.TabIndex = 21;
             // 
             // lblMonthNonFixedTotal
             // 
@@ -293,82 +292,13 @@
             // bSave
             // 
             this.bSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bSave.Location = new System.Drawing.Point(592, 83);
+            this.bSave.Location = new System.Drawing.Point(612, 82);
             this.bSave.Name = "bSave";
-            this.bSave.Size = new System.Drawing.Size(75, 26);
+            this.bSave.Size = new System.Drawing.Size(24, 26);
             this.bSave.TabIndex = 15;
-            this.bSave.Text = "Guardar";
+            this.bSave.Text = "+";
             this.bSave.UseVisualStyleBackColor = true;
             this.bSave.Click += new System.EventHandler(this.bSave_Click);
-            // 
-            // label10
-            // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(508, 87);
-            this.label10.Margin = new System.Windows.Forms.Padding(15, 10, 5, 10);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(55, 17);
-            this.label10.TabIndex = 14;
-            this.label10.Text = "¿Es fijo?";
-            // 
-            // cbFixed
-            // 
-            this.cbFixed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbFixed.AutoSize = true;
-            this.cbFixed.Location = new System.Drawing.Point(565, 89);
-            this.cbFixed.Name = "cbFixed";
-            this.cbFixed.Size = new System.Drawing.Size(15, 14);
-            this.cbFixed.TabIndex = 13;
-            this.cbFixed.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(395, 88);
-            this.label9.Margin = new System.Windows.Forms.Padding(15, 10, 5, 10);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(41, 17);
-            this.label9.TabIndex = 12;
-            this.label9.Text = "Coste";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(12, 86);
-            this.label8.Margin = new System.Windows.Forms.Padding(15, 10, 5, 10);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(64, 17);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "Concepto";
-            // 
-            // nCost
-            // 
-            this.nCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.nCost.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nCost.Location = new System.Drawing.Point(438, 84);
-            this.nCost.Margin = new System.Windows.Forms.Padding(15);
-            this.nCost.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.nCost.Name = "nCost";
-            this.nCost.Size = new System.Drawing.Size(51, 25);
-            this.nCost.TabIndex = 10;
-            // 
-            // tbConcept
-            // 
-            this.tbConcept.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbConcept.Location = new System.Drawing.Point(84, 83);
-            this.tbConcept.Name = "tbConcept";
-            this.tbConcept.Size = new System.Drawing.Size(293, 25);
-            this.tbConcept.TabIndex = 9;
             // 
             // label7
             // 
@@ -530,7 +460,7 @@
             this.contextMenuEditMonth,
             this.contextMenuDeleteMonth});
             this.contextMonths.Name = "contextMonths";
-            this.contextMonths.Size = new System.Drawing.Size(153, 92);
+            this.contextMonths.Size = new System.Drawing.Size(110, 70);
             // 
             // contextMenuAddMonth
             // 
@@ -542,7 +472,7 @@
             // contextMenuEditMonth
             // 
             this.contextMenuEditMonth.Name = "contextMenuEditMonth";
-            this.contextMenuEditMonth.Size = new System.Drawing.Size(152, 22);
+            this.contextMenuEditMonth.Size = new System.Drawing.Size(109, 22);
             this.contextMenuEditMonth.Text = "Editar";
             this.contextMenuEditMonth.Click += new System.EventHandler(this.contextMenuEditMonth_Click);
             // 
@@ -575,6 +505,18 @@
             this.contextMenuDelete.Text = "Borrar";
             this.contextMenuDelete.Click += new System.EventHandler(this.contextMenuDelete_Click);
             // 
+            // bClear
+            // 
+            this.bClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bClear.Location = new System.Drawing.Point(643, 82);
+            this.bClear.Name = "bClear";
+            this.bClear.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.bClear.Size = new System.Drawing.Size(24, 26);
+            this.bClear.TabIndex = 22;
+            this.bClear.Text = "-";
+            this.bClear.UseVisualStyleBackColor = true;
+            this.bClear.Click += new System.EventHandler(this.bClear_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -592,7 +534,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridMonths)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nCost)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpenses)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nMonthContinuosLimit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nMonthLimit)).EndInit();
@@ -617,12 +558,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dataGridExpenses;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.NumericUpDown nCost;
-        private System.Windows.Forms.TextBox tbConcept;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.CheckBox cbFixed;
         private System.Windows.Forms.Button bSave;
         private System.Windows.Forms.Label lblMonthTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn MonthTitle;
@@ -647,6 +582,8 @@
         private System.Windows.Forms.ToolStripMenuItem contextMenuDelete;
         private System.Windows.Forms.ToolStripMenuItem contextMenuEditMonth;
         private System.Windows.Forms.ToolStripMenuItem contextMenuAddMonth;
+        private ExpenseEditorControl expenseEditor;
+        private System.Windows.Forms.Button bClear;
     }
 }
 
