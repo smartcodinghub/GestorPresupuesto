@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Environment;
 
 namespace GestorPresupuesto.Controller
 {
@@ -20,7 +21,8 @@ namespace GestorPresupuesto.Controller
 
         public PersistenceController()
         {
-            path = ConfigurationUtil.ReadConfiguration("PersistencePath", "./Stored.json");
+            String persistencePath = ConfigurationUtil.ReadConfiguration("PersistencePath", "GestorPresupuesto\\Saved.json");
+            path = Path.Combine(Environment.GetFolderPath(SpecialFolder.MyDocuments), persistencePath);
             secondsToSave = ConfigurationUtil.ReadConfigurationAsInt("CacheWriteSeconds", 60);
             lastRead = DateTime.MinValue;
             cache = ReadFile();
@@ -38,7 +40,7 @@ namespace GestorPresupuesto.Controller
                 if (!String.IsNullOrEmpty(textRead))
                     return JsonConvert.DeserializeObject<PersistenceEntity>(textRead);
             }
-            catch (Exception) { }
+            catch (Exception ex) { }
 
             return new PersistenceEntity();
         }
@@ -47,10 +49,15 @@ namespace GestorPresupuesto.Controller
         {
             try
             {
+                FileInfo file = new FileInfo(path);
+
+                if (!file.Exists)
+                    Directory.CreateDirectory(file.DirectoryName);
+
                 File.WriteAllText(path, JsonConvert.SerializeObject(toWrite));
                 return true;
             }
-            catch (Exception) { }
+            catch (Exception ex) { }
 
             return false;
         }

@@ -1,4 +1,4 @@
-﻿namespace GestorPresupuesto
+﻿namespace GestorPresupuesto.UserControls
 {
     partial class ExpenseEditorControl
     {

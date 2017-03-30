@@ -29,8 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.bSaveMonth = new System.Windows.Forms.Button();
             this.dataGridMonths = new System.Windows.Forms.DataGridView();
             this.MonthTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,7 +44,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.bClear = new System.Windows.Forms.Button();
-            this.expenseEditor = new GestorPresupuesto.ExpenseEditorControl();
+            this.expenseEditor = new GestorPresupuesto.UserControls.ExpenseEditorControl();
             this.lblMonthNonFixedTotal = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.lblMonthFixedTotal = new System.Windows.Forms.Label();
@@ -98,6 +100,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.bSaveMonth);
             this.panel1.Controls.Add(this.dataGridMonths);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -106,6 +109,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(558, 657);
             this.panel1.TabIndex = 0;
+            // 
+            // bSaveMonth
+            // 
+            this.bSaveMonth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bSaveMonth.Location = new System.Drawing.Point(519, 11);
+            this.bSaveMonth.Name = "bSaveMonth";
+            this.bSaveMonth.Size = new System.Drawing.Size(24, 26);
+            this.bSaveMonth.TabIndex = 23;
+            this.bSaveMonth.Text = "+";
+            this.bSaveMonth.UseVisualStyleBackColor = true;
             // 
             // dataGridMonths
             // 
@@ -525,6 +538,7 @@
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainWindow";
             this.Text = "MainWindow";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
@@ -583,8 +597,9 @@
         private System.Windows.Forms.ToolStripMenuItem contextMenuDelete;
         private System.Windows.Forms.ToolStripMenuItem contextMenuEditMonth;
         private System.Windows.Forms.ToolStripMenuItem contextMenuAddMonth;
-        private ExpenseEditorControl expenseEditor;
+        private UserControls.ExpenseEditorControl expenseEditor;
         private System.Windows.Forms.Button bClear;
+        private System.Windows.Forms.Button bSaveMonth;
     }
 }
 

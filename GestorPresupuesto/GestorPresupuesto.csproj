@@ -12,7 +12,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
-    <PublishUrl>publish\</PublishUrl>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>E:\GestorDePresupuesto\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -22,10 +23,13 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ProductName>Gestor de Presupuesto</ProductName>
+    <PublisherName>Smartcodinghub</PublisherName>
+    <SuiteName>Smartcodinghub</SuiteName>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -46,6 +50,21 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>C842BC9F6E138E5B71F40AEF3B9C176159B07B3C</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>GestorPresupuesto_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>spreadsheet-cell-row.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -74,10 +93,10 @@
     <Compile Include="Controller\MonthModelController.cs" />
     <Compile Include="Controller\PersistenceController.cs" />
     <Compile Include="Controller\SettingsController.cs" />
-    <Compile Include="ExpenseEditorControl.cs">
+    <Compile Include="UserControl\ExpenseEditorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ExpenseEditorControl.Designer.cs">
+    <Compile Include="UserControl\ExpenseEditorControl.Designer.cs">
       <DependentUpon>ExpenseEditorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.cs">
@@ -85,6 +104,12 @@
     </Compile>
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\ModelViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl\ModelViewer.Designer.cs">
+      <DependentUpon>ModelViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Expense.cs" />
     <Compile Include="Model\MonthModel.cs" />
@@ -95,7 +120,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\ConfigurationUtil.cs" />
-    <EmbeddedResource Include="ExpenseEditorControl.resx">
+    <EmbeddedResource Include="UserControl\ExpenseEditorControl.resx">
       <DependentUpon>ExpenseEditorControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
@@ -111,6 +136,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControl\ModelViewer.resx">
+      <DependentUpon>ModelViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="GestorPresupuesto_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -136,6 +165,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="spreadsheet-cell-row.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using GestorPresupuesto.Model;
 
-namespace GestorPresupuesto
+namespace GestorPresupuesto.UserControls
 {
     public partial class ExpenseEditorControl : UserControl
     {
