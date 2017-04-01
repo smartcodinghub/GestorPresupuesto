@@ -27,9 +27,7 @@ namespace GestorPresupuesto
                     RunNgen();
                 }
             }
-            catch (Exception ex)
-            {
-            }
+            catch (Exception ex) { }
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -38,8 +36,8 @@ namespace GestorPresupuesto
 
         public static void RunNgen()
         {
-            string appPath = Application.StartupPath;
-            string winPath = Environment.GetEnvironmentVariable("WINDIR");
+            String appPath = Application.StartupPath;
+            String winPath = Environment.GetEnvironmentVariable("WINDIR");
 
             Process proc = new Process();
             System.IO.Directory.SetCurrentDirectory(appPath);
