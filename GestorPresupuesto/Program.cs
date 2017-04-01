@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Deployment.Application;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Security.Permissions;
 using System.Security.Principal;
@@ -16,17 +17,25 @@ namespace GestorPresupuesto
         /// Punto de entrada principal para la aplicación.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(String[] args)
         {
-            if (ApplicationDeployment.IsNetworkDeployed && ApplicationDeployment.CurrentDeployment.IsFirstRun && IsUserAdministrator())
-                RunNgen();
+            try
+            {
+                if ((ApplicationDeployment.IsNetworkDeployed && ApplicationDeployment.CurrentDeployment.IsFirstRun)
+                    || (args != null && args.Contains("-ngen")))
+                {
+                    RunNgen();
+                }
+            }
+            catch (Exception ex)
+            {
+            }
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainWindow());
         }
 
-        [PrincipalPermission(SecurityAction.Demand, Role = @"BUILTIN\Administrators")]
         public static void RunNgen()
         {
             string appPath = Application.StartupPath;
@@ -38,29 +47,14 @@ namespace GestorPresupuesto
             proc.EnableRaisingEvents = false;
             proc.StartInfo.CreateNoWindow = false;
             proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            proc.StartInfo.Verb = "runas";
+            proc.StartInfo.UseShellExecute = true;
 
             proc.StartInfo.FileName = winPath + @"\Microsoft.NET\Framework\v4.0.30319\ngen.exe";
-            proc.StartInfo.Arguments = "install " + Application.ProductName + " /nologo /silent";
+            proc.StartInfo.Arguments = "install " + Application.ProductName + ".exe /nologo /silent";
 
             proc.Start();
             proc.WaitForExit();
-        }
-
-        public static bool IsUserAdministrator()
-        {
-            bool isAdmin;
-
-            using (WindowsIdentity user = WindowsIdentity.GetCurrent())
-            {
-                try
-                {
-                    WindowsPrincipal principal = new WindowsPrincipal(user);
-                    isAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
-                }
-                catch (Exception ex) { isAdmin = false; }
-            }
-
-            return isAdmin;
         }
     }
 }

@@ -26,7 +26,7 @@
     <ProductName>Gestor de Presupuesto</ProductName>
     <PublisherName>Smartcodinghub</PublisherName>
     <SuiteName>Smartcodinghub</SuiteName>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
