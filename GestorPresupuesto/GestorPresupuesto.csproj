@@ -26,7 +26,7 @@
     <ProductName>Gestor de Presupuesto</ProductName>
     <PublisherName>Smartcodinghub</PublisherName>
     <SuiteName>Smartcodinghub</SuiteName>
-    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -105,12 +105,6 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControl\ModelViewer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControl\ModelViewer.Designer.cs">
-      <DependentUpon>ModelViewer.cs</DependentUpon>
-    </Compile>
     <Compile Include="Model\Expense.cs" />
     <Compile Include="Model\MonthModel.cs" />
     <Compile Include="Model\PersistenceEntity.cs" />
@@ -136,9 +130,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UserControl\ModelViewer.resx">
-      <DependentUpon>ModelViewer.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="GestorPresupuesto_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

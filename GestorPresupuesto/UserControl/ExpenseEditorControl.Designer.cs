@@ -85,6 +85,7 @@
             // nCost
             // 
             this.nCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.nCost.DecimalPlaces = 2;
             this.nCost.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nCost.Location = new System.Drawing.Point(428, 2);
             this.nCost.Margin = new System.Windows.Forms.Padding(15);

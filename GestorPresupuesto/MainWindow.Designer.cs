@@ -425,6 +425,7 @@
             // nMonthContinuosLimit
             // 
             this.nMonthContinuosLimit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.nMonthContinuosLimit.DecimalPlaces = 2;
             this.nMonthContinuosLimit.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nMonthContinuosLimit.Location = new System.Drawing.Point(619, 14);
             this.nMonthContinuosLimit.Margin = new System.Windows.Forms.Padding(15);
@@ -454,6 +455,7 @@
             // nMonthLimit
             // 
             this.nMonthLimit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.nMonthLimit.DecimalPlaces = 2;
             this.nMonthLimit.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nMonthLimit.Location = new System.Drawing.Point(417, 14);
             this.nMonthLimit.Margin = new System.Windows.Forms.Padding(15);
