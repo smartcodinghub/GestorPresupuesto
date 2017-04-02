@@ -58,7 +58,7 @@ namespace GestorPresupuesto.Controller
 
         public MonthViewModel[] MonthsAsMonthViewModel()
         {
-            return this.Months.Values.Select(m => new MonthViewModel(m)).ToArray();
+            return this.Months.Values.OrderByDescending(m => m.Month).ThenByDescending(m => m.Year).Select(m => new MonthViewModel(m)).ToArray();
         }
 
         public HashSet<MonthModel> MonthsAsSet()

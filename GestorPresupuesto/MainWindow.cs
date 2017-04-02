@@ -127,7 +127,7 @@ namespace GestorPresupuesto
 
         private void contextMenuAddMonth_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void contextMenuEditMonth_Click(object sender, EventArgs e)
@@ -184,7 +184,11 @@ namespace GestorPresupuesto
 
         private void RefreshView()
         {
+            int selected = dataGridMonths.SelectedRows.OfType<DataGridViewRow>().FirstOrDefault()?.Index ?? 0;
+            int count = dataGridMonths.RowCount;
+
             dataGridMonths.DataSource = modelController.MonthsAsMonthViewModel();
+
             foreach (DataGridViewRow row in dataGridMonths.Rows)
             {
                 if (Convert.ToBoolean(row.Cells[6].Value))
@@ -193,6 +197,11 @@ namespace GestorPresupuesto
                     row.DefaultCellStyle.ForeColor = Color.White;
                 }
             }
+
+            int diff = Math.Max(count - dataGridMonths.RowCount, 0);
+
+            dataGridMonths.ClearSelection();
+            dataGridMonths.Rows[Math.Max(0, selected - diff)].Selected = true;
         }
 
         private MonthViewModel GetSelectedMonth()
