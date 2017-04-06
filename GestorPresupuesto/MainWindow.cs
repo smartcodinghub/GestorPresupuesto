@@ -1,4 +1,5 @@
 ﻿using GestorPresupuesto.Controller;
+using GestorPresupuesto.Forms;
 using GestorPresupuesto.Model;
 using GestorPresupuesto.UserControls;
 using System;
@@ -127,7 +128,13 @@ namespace GestorPresupuesto
 
         private void contextMenuAddMonth_Click(object sender, EventArgs e)
         {
-            
+            var (addNew, month) = NewMonthForm.ShowForm();
+
+            if (addNew)
+            {
+                modelController.AddMonth(month);
+                RefreshView();
+            }
         }
 
         private void contextMenuEditMonth_Click(object sender, EventArgs e)

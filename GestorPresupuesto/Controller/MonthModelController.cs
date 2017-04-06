@@ -34,6 +34,12 @@ namespace GestorPresupuesto.Controller
             }
         }
 
+        public void AddMonth(MonthModel month)
+        {
+            if (!Months.ContainsKey(month.Id))
+                this.Months.Add(month.Id, month);
+        }
+
         public void AddExpense(int id, Expense expense)
         {
             if (Months.ContainsKey(id))

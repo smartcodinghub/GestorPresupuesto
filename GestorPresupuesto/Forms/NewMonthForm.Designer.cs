@@ -1,4 +1,4 @@
-﻿namespace GestorPresupuesto.UserControl
+﻿namespace GestorPresupuesto.Forms
 {
     partial class NewMonthForm
     {
@@ -42,9 +42,24 @@
             // 
             this.nMonth.Location = new System.Drawing.Point(74, 22);
             this.nMonth.Margin = new System.Windows.Forms.Padding(15);
+            this.nMonth.Maximum = new decimal(new int[] {
+            12,
+            0,
+            0,
+            0});
+            this.nMonth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nMonth.Name = "nMonth";
             this.nMonth.Size = new System.Drawing.Size(70, 22);
             this.nMonth.TabIndex = 0;
+            this.nMonth.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label1
             // 
@@ -74,9 +89,24 @@
             this.nYear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.nYear.Location = new System.Drawing.Point(224, 22);
             this.nYear.Margin = new System.Windows.Forms.Padding(15);
+            this.nYear.Maximum = new decimal(new int[] {
+            2100,
+            0,
+            0,
+            0});
+            this.nYear.Minimum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
             this.nYear.Name = "nYear";
             this.nYear.Size = new System.Drawing.Size(70, 22);
             this.nYear.TabIndex = 2;
+            this.nYear.Value = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
             // 
             // bCancel
             // 
@@ -101,7 +131,7 @@
             // NewMonthForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(318, 106);
+            this.ClientSize = new System.Drawing.Size(318, 99);
             this.Controls.Add(this.bOk);
             this.Controls.Add(this.bCancel);
             this.Controls.Add(this.label2);

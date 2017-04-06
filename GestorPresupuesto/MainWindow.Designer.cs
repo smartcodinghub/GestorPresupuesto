@@ -119,6 +119,7 @@
             this.bSaveMonth.TabIndex = 23;
             this.bSaveMonth.Text = "+";
             this.bSaveMonth.UseVisualStyleBackColor = true;
+            this.bSaveMonth.Click += new System.EventHandler(this.contextMenuAddMonth_Click);
             // 
             // dataGridMonths
             // 
