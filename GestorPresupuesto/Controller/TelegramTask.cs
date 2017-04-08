@@ -12,12 +12,14 @@ namespace GestorPresupuesto.Controller
         private readonly Timer timer;
         private readonly TelegramController controller;
 
-        public TelegramTask(ISettingsController controller)
+        public TelegramTask(TelegramController controller)
         {
-            controller = new TelegramController(controller);
+            this.controller = controller;
 
-            timer = new Timer(10000);
-            timer.Elapsed += Task;
+            this.timer = new Timer(10000);
+            this.timer.Elapsed += DoTask;
+
+            Task.WaitAll(this.controller.FetchUpdates());
         }
 
         public void Start()
@@ -30,7 +32,7 @@ namespace GestorPresupuesto.Controller
             timer.Stop();
         }
 
-        private async void Task(object sender, ElapsedEventArgs e)
+        private async void DoTask(object sender, ElapsedEventArgs e)
         {
             await controller.FetchUpdates();
         }

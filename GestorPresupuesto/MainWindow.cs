@@ -19,6 +19,7 @@ namespace GestorPresupuesto
         private MonthModelController modelController;
         private PersistenceController persistenceController;
         private SettingsController settingsController;
+        private TelegramTask task;
 
         public MainWindow()
         {
@@ -31,6 +32,9 @@ namespace GestorPresupuesto
 
             settingsController = new SettingsController(persistenceController);
             modelController = new MonthModelController(persistenceController, settingsController);
+
+            task = new TelegramTask(new TelegramController(settingsController, modelController));
+            task.Start();
 
             expenseEditor.NewExpense();
 

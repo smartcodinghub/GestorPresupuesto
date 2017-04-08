@@ -30,10 +30,6 @@ namespace GestorPresupuesto
             }
             catch (Exception ex) { }
 
-            /* Tasks */
-            TelegramTask task = new TelegramTask();
-            task.Start();
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainWindow());

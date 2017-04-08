@@ -41,7 +41,7 @@ namespace GestorPresupuesto.Model
 
         public Boolean Equals(MonthModel other)
         {
-            return other.Month.Equals(other.Month) && other.Year.Equals(other.Year);
+            return other.Month.Equals(this.Month) && other.Year.Equals(this.Year);
         }
 
         public override bool Equals(object obj)
