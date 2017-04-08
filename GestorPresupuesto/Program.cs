@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GestorPresupuesto.Controller;
+using System;
 using System.Collections.Generic;
 using System.Deployment.Application;
 using System.Diagnostics;
@@ -28,6 +29,10 @@ namespace GestorPresupuesto
                 }
             }
             catch (Exception ex) { }
+
+            /* Tasks */
+            TelegramTask task = new TelegramTask();
+            task.Start();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

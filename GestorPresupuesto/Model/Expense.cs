@@ -13,5 +13,15 @@ namespace GestorPresupuesto.Model
         public decimal Cost { get; set; }
 
         public Boolean IsFixed { get; set; }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
     }
 }

@@ -11,5 +11,7 @@ namespace GestorPresupuesto.Model
         public decimal MonthExpenseMax { get; set; }
 
         public decimal MonthContinuosExpenseMax { get; set; }
+
+        public String TelegramUserAlias { get; set; }
     }
 }
