@@ -82,7 +82,7 @@ namespace GestorPresupuesto.Controller
 
         private void ProcessCommand(String command)
         {
-            //^(\+|-)(\d+)\s+(?:(\d{2}\/\d{2}(\d{2})?)\s+)?(\D+)$ Mejor Split... Después de comprobar el primer caracter
+            //^(\+|-)(\d+)\s+(?:(\d{2}\/\d{2}(\d{2})?)\s+)?(\D+)$ Mejor Split... DespuÃ©s de comprobar el primer caracter
             Match match = commandRegex.Match(command);
 
             String action = match.Groups[1].Value;
@@ -93,6 +93,8 @@ namespace GestorPresupuesto.Controller
             String text = match.Groups[6].Value;
             Boolean isFixed = text.EndsWith(" si", StringComparison.InvariantCultureIgnoreCase);
 
+            /* If we have only the last to digits of the year 
+             * (17 instead of 2017) we add the 20 before joining */
             if (String.IsNullOrEmpty(year1)) year1 = "20";
             String year = year1 + year2;
 
