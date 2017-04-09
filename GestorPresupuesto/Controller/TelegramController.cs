@@ -55,7 +55,7 @@ namespace GestorPresupuesto.Controller
                 /* Getting and preparing updates */
                 Update[] updates = await bot.GetUpdatesAsync().ConfigureAwait(false);
                 String[] commands = updates.Where(u => u.Id > lastProcessed && String.Equals(u?.Message.From.Username, userAlias))
-                    .Select(u => u?.Message.Text.ToLower()).Where(CommandValid).ToArray();
+                    .Select(u => u?.Message.Text).Where(CommandValid).ToArray();
 
                 /* Processing updates */
                 Array.ForEach(commands, ProcessCommand);
@@ -91,7 +91,7 @@ namespace GestorPresupuesto.Controller
             String year1 = match.Groups[4].Value;
             String year2 = match.Groups[5].Value;
             String text = match.Groups[6].Value;
-            Boolean isFixed = text.EndsWith(" si");
+            Boolean isFixed = text.EndsWith(" si", StringComparison.InvariantCultureIgnoreCase);
 
             if (String.IsNullOrEmpty(year1)) year1 = "20";
             String year = year1 + year2;
