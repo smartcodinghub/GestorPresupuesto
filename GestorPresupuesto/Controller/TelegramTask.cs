@@ -11,6 +11,7 @@ namespace GestorPresupuesto.Controller
     {
         private readonly Timer timer;
         private readonly TelegramController controller;
+        private Action<Timer> StartTimer;
 
         public Action<int> OnFetchComplete { get; set; }
 
@@ -23,14 +24,19 @@ namespace GestorPresupuesto.Controller
             {
                 this.timer = new Timer(2000);
                 this.timer.Elapsed += DoTaskAsync;
+                this.StartTimer = (t) => t.Start();
 
                 Task.WaitAll(this.controller.FetchUpdatesAsync());
+            }
+            else
+            {
+                this.StartTimer = (t) => { };
             }
         }
 
         public void Start()
         {
-            timer.Start();
+            this.StartTimer(timer);
         }
 
         public void Stop()
