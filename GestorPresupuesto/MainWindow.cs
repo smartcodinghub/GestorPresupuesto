@@ -56,6 +56,8 @@ namespace GestorPresupuesto
             });
         }
 
+        #region Expense Editor events
+
         private void bSave_Click(object sender, EventArgs e)
         {
             MonthModel selectedMonth = this.GetSelectedMonth()?.Model;
@@ -67,7 +69,7 @@ namespace GestorPresupuesto
                 if (!expenseEditor.IsEditing)
                     modelController.AddExpense(selectedMonth.Id, expense);
 
-                ClearExpenseEditor();
+                expenseEditor.CancelAndClearModification();
 
                 RefreshView();
             }
@@ -75,13 +77,10 @@ namespace GestorPresupuesto
 
         private void bClear_Click(object sender, EventArgs e)
         {
-            ClearExpenseEditor();
-        }
-
-        private void ClearExpenseEditor()
-        {
             expenseEditor.CancelAndClearModification();
         }
+
+        #endregion
 
         #region Datagrids Events
 
@@ -115,13 +114,21 @@ namespace GestorPresupuesto
             }
         }
 
+        private void dataGridExpenses_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+                EditExpense();
+        }
+
         #endregion
 
         #region ContextMenus
 
         private void contextMenuEdit_Click(object sender, EventArgs e)
         {
-            EditMonth();
+            EditExpense();
         }
 
         private void contextMenuDelete_Click(object sender, EventArgs e)
@@ -163,14 +170,9 @@ namespace GestorPresupuesto
             }
         }
 
-        private void EditMonth()
-        {
-            Expense expense = GetSelectedExpense()?.Model;
-
-            expenseEditor.ModifyExpense(expense);
-        }
-
         #endregion
+
+        #region Month Edition
 
         private void nMonthContinuosLimit_Update(object sender, EventArgs e)
         {
@@ -196,6 +198,8 @@ namespace GestorPresupuesto
                 RefreshView();
             }
         }
+
+        #endregion
 
         #region Helpers
 
@@ -259,16 +263,13 @@ namespace GestorPresupuesto
             return null;
         }
 
-        #endregion
-
-        private void dataGridExpenses_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void EditExpense()
         {
-            var senderGrid = (DataGridView)sender;
+            Expense expense = GetSelectedExpense()?.Model;
 
-            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
-            {
-                EditMonth();
-            }
+            expenseEditor.ModifyExpense(expense);
         }
+
+        #endregion
     }
 }
