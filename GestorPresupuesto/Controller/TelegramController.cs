@@ -17,6 +17,8 @@ namespace GestorPresupuesto.Controller
         private MonthModelController monthController;
         private Regex commandRegex = new Regex(@"^(\+|-)(\d+)\s+(?:(\d{2})\/(\d{2})?(\d{2})\s+)?(.+)$", RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
 
+        public Boolean IsConnected { get; set; }
+
         public TelegramController(ISettingsController settingsController, MonthModelController monthController)
         {
             this.monthController = monthController;
@@ -24,9 +26,17 @@ namespace GestorPresupuesto.Controller
 
             String apiKey = this.settingsController.Settings.TelegramApiKey;
 
-            // TODO, Excepciones si la api key está mal o vacía. Avisar al Task para que no se ejecute.
+            /* This checks and tries the given api key. If not valid, 
+             * it won't call the api. */
             if (!String.IsNullOrEmpty(apiKey))
+            {
                 this.bot = new TelegramBotClient(apiKey);
+                this.IsConnected = bot.TestApiAsync().Result;
+            }
+            else
+            {
+                this.IsConnected = false;
+            }
         }
 
         /// <summary>
@@ -36,22 +46,27 @@ namespace GestorPresupuesto.Controller
         /// <returns></returns>
         public async Task<int> FetchUpdatesAsync()
         {
-            /* Settings */
-            String userAlias = settingsController.Settings.TelegramUserAlias;
-            long lastProcessed = settingsController.Settings.TelegramLastProcessed;
+            if (IsConnected)
+            {
+                /* Settings */
+                String userAlias = settingsController.Settings.TelegramUserAlias;
+                long lastProcessed = settingsController.Settings.TelegramLastProcessed;
 
-            /* Getting and preparing updates */
-            Update[] updates = await bot.GetUpdatesAsync().ConfigureAwait(false);
-            String[] commands = updates.Where(u => u.Id > lastProcessed && String.Equals(u?.Message.From.Username, userAlias))
-                .Select(u => u?.Message.Text.ToLower()).Where(CommandValid).ToArray();
+                /* Getting and preparing updates */
+                Update[] updates = await bot.GetUpdatesAsync().ConfigureAwait(false);
+                String[] commands = updates.Where(u => u.Id > lastProcessed && String.Equals(u?.Message.From.Username, userAlias))
+                    .Select(u => u?.Message.Text.ToLower()).Where(CommandValid).ToArray();
 
-            /* Processing updates */
-            Array.ForEach(commands, ProcessCommand);
+                /* Processing updates */
+                Array.ForEach(commands, ProcessCommand);
 
-            /* Setting the last processed item */
-            settingsController.Settings.TelegramLastProcessed = updates.Select(u => u.Id).Max();
+                /* Setting the last processed item */
+                settingsController.Settings.TelegramLastProcessed = updates.Select(u => u.Id).Max();
 
-            return commands.Length;
+                return commands.Length;
+            }
+
+            return 0;
         }
 
         /// <summary>

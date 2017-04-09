@@ -18,10 +18,14 @@ namespace GestorPresupuesto.Controller
         {
             this.controller = controller;
 
-            this.timer = new Timer(2000);
-            this.timer.Elapsed += DoTaskAsync;
+            /* Only if controller is connected and token tried */
+            if (controller.IsConnected)
+            {
+                this.timer = new Timer(2000);
+                this.timer.Elapsed += DoTaskAsync;
 
-            Task.WaitAll(this.controller.FetchUpdatesAsync());
+                Task.WaitAll(this.controller.FetchUpdatesAsync());
+            }
         }
 
         public void Start()
