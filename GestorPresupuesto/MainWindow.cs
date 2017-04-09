@@ -34,11 +34,17 @@ namespace GestorPresupuesto
             modelController = new MonthModelController(persistenceController, settingsController);
 
             task = new TelegramTask(new TelegramController(settingsController, modelController));
+            task.OnFetchComplete = OnFetchComplete;
             task.Start();
 
             expenseEditor.NewExpense();
 
             RefreshView();
+        }
+
+        private void OnFetchComplete(int updatesProcessed)
+        {
+            if (updatesProcessed > 0) Invoke(new Action(() => RefreshView()));
         }
 
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
@@ -212,7 +218,9 @@ namespace GestorPresupuesto
             int diff = Math.Max(count - dataGridMonths.RowCount, 0);
 
             dataGridMonths.ClearSelection();
-            dataGridMonths.Rows[Math.Max(0, selected - diff)].Selected = true;
+
+            if (dataGridMonths.Rows.Count > 0)
+                dataGridMonths.Rows[Math.Max(0, selected - diff)].Selected = true;
         }
 
         private MonthViewModel GetSelectedMonth()

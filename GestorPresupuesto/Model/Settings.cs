@@ -15,5 +15,7 @@ namespace GestorPresupuesto.Model
         public String TelegramUserAlias { get; set; }
 
         public String TelegramApiKey { get; set; }
+
+        public long TelegramLastProcessed { get; set; }
     }
 }

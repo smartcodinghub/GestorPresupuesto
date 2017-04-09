@@ -16,13 +16,21 @@ namespace GestorPresupuesto.Controller
         {
             this.Months = persistenceController.Get().Months.ToDictionary(m => m.Id);
             this.settingsController = settingsController;
-            this.AddMonth(DateTime.Now);
+            this.AddMonthInner(DateTime.Now);
         }
 
-        private void AddMonth(DateTime time)
+        private void AddMonthInner(DateTime time)
         {
-            MonthModel model = new MonthModel(time);
+            AddMonthInner(new MonthModel(time));
+        }
 
+        private void AddMonthInner(int month, int year)
+        {
+            AddMonthInner(new MonthModel(month, year));
+        }
+
+        private void AddMonthInner(MonthModel model)
+        {
             if (!Months.ContainsKey(model.Id))
             {
                 Settings settings = settingsController.Settings;
@@ -42,8 +50,11 @@ namespace GestorPresupuesto.Controller
 
         public void AddExpense(int id, Expense expense)
         {
-            if (Months.ContainsKey(id))
-                this.Months[id].Expenses.Add(expense);
+            /* If it doesn't exists, create it */
+            if (!Months.ContainsKey(id))
+                AddMonthInner(id % 100, id / 100);
+
+            this.Months[id].Expenses.Add(expense);
         }
 
         public void RemoveMonth(int id)
